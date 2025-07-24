@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.androiddevelopmentapplicationapp"
+    namespace = "com.example.androidapplicationdevelopmentxml"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.androiddevelopmentapplicationapp"
+        applicationId = "com.example.androidapplicationdevelopmentxml"
         minSdk = 28
         targetSdk = 36
         versionCode = 1
@@ -33,10 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

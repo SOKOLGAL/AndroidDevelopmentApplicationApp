@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AndroidDevelopmentApplicationApp</string>
+
+    <string name="app_name">AndroidApplicationDevelopment[XML]</string>
+    <string name="development">Development</string>
+    <string name="button_category">Категории</string>
+    <string name="button_favorites">Избранное</string>
+
 </resources>
