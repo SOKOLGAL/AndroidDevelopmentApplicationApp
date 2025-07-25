@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/categories_fragment_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+       <TextView
+           android:id="@+id/tvCategories"
+           android:layout_width="385dp"
+           android:layout_height="643dp"
+           android:gravity="center"
+           android:text="@string/fragment_list_of_categories"
+           android:textSize="@dimen/list_of_categories"
+           android:textStyle="bold" />
+
+</FrameLayout>

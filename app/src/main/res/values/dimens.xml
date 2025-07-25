@@ -8,5 +8,9 @@
     <dimen name="button_rounding_radius">8dp</dimen>
     <dimen name="icon_favorites_button">10dp</dimen>
     <dimen name="button_width">162dp</dimen>
+    <dimen name="height_fragment">272dp</dimen>
+    <dimen name="layout_width_fragment">0dp</dimen>
+    <dimen name="layout_height_fragment">0dp</dimen>
+    <dimen name="list_of_categories">25sp</dimen>
 
 </resources>
