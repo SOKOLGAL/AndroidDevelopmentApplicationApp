@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnCategoriesButton"
+            style="@style/StyleNavButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/half_main_padding"
+            android:layout_marginStart="@dimen/main_padding"
+            android:layout_marginEnd="@dimen/main_distance_between_buttons"
+            android:layout_weight="1"
+            android:backgroundTint="@color/categoryButtonColor"
+            android:paddingVertical="@dimen/half_main_padding_button_indent"
+            android:text="@string/button_category" />
+
+        <Button
+            android:id="@+id/btnFavoritesButton"
+            style="@style/StyleNavButton"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/half_main_padding"
+            android:layout_marginStart="@dimen/main_distance_between_buttons"
+            android:layout_marginEnd="@dimen/main_padding"
+            android:layout_weight="1"
+            android:backgroundTint="@color/favoritesButtonColor"
+            android:paddingVertical="@dimen/half_main_padding_button_indent"
+            android:text="@string/button_favorites"
+            app:icon="@drawable/ic_heart_empty"
+            app:iconGravity="textEnd"
+            app:iconPadding="@dimen/icon_favorites_button" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
