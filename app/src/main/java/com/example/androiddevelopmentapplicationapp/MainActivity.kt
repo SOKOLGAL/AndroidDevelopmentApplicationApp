@@ -21,6 +21,18 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
 
+        binding.btnCategoriesButton.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.mainContainer, CategoriesListFragment())
+                .commit()
+        }
+
+        binding.btnFavoritesButton.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.mainContainer, FavoritesFragment())
+                .commit()
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
