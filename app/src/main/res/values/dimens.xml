@@ -12,5 +12,6 @@
     <dimen name="layout_width_fragment">0dp</dimen>
     <dimen name="layout_height_fragment">0dp</dimen>
     <dimen name="list_of_categories">25sp</dimen>
+    <dimen name="fragment_indent">16dp</dimen>
 
 </resources>
