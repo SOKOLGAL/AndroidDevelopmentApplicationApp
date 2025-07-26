@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidapplicationdevelopmentxml.databinding.ActivityMainBinding
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment : Fragment() {
-
     private var _binding: FragmentListCategoriesBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding ?: throw IllegalArgumentException("CategoriesListFragment is null!")
 
     override fun onCreateView(
         inflater: LayoutInflater,
