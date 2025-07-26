@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add<CategoriesListFragment>(R.id.mainContainer)
+            addToBackStack(null)
         }
     }
 }
