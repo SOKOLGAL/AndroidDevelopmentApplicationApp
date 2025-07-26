@@ -4,5 +4,6 @@
     <string name="development">Development</string>
     <string name="button_category">Категории</string>
     <string name="button_favorites">Избранное</string>
+    <string name="fragment_list_of_categories">Список категорий</string>
 
 </resources>
