@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             add<CategoriesListFragment>(R.id.mainContainer)
             addToBackStack(null)
         }
-        binding.btnCategoriesButton.setOnClickListener {
+
+        binding.btnCategories.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<CategoriesListFragment>(R.id.mainContainer)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnFavoritesButton.setOnClickListener {
+        binding.btnFavorites.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<FavoritesFragment>(R.id.mainContainer)
