@@ -7,13 +7,13 @@ object STUB {
             id = 0,
             title = "Бургеры",
             description = "Рецепты всех популярных видов бургеров",
-            imageUrl = "burgers.png"
+            imageUrl = "burger.png"
         ),
         Category(
             id = 1,
             title = "Десерты",
             description = "Самые вкусные рецепты десертов специально для вас",
-            imageUrl = "desserts.png"
+            imageUrl = "dessert.png"
         ),
         Category(
             id = 2,
@@ -31,13 +31,13 @@ object STUB {
             id = 4,
             title = "Супы",
             description = "От классики до экзотики: мир в одной тарелке",
-            imageUrl = "soups.png"
+            imageUrl = "soup.png"
         ),
         Category(
             id = 5,
             title = "Салаты",
             description = "Хрустящий калейдоскоп под соусом вдохновения",
-            imageUrl = "salads.png"
+            imageUrl = "salad.png"
         )
     )
 
