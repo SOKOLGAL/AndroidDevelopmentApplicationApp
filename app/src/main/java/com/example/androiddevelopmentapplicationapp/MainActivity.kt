@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.ActivityMainBinding
 
@@ -32,17 +33,20 @@ class MainActivity : AppCompatActivity() {
             add<CategoriesListFragment>(R.id.mainContainer)
             addToBackStack(null)
         }
-
         binding.btnCategoriesButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.mainContainer, CategoriesListFragment())
-                .commit()
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<CategoriesListFragment>(R.id.mainContainer)
+                addToBackStack(null)
+            }
         }
 
         binding.btnFavoritesButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.mainContainer, FavoritesFragment())
-                .commit()
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<FavoritesFragment>(R.id.mainContainer)
+                addToBackStack(null)
+            }
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
