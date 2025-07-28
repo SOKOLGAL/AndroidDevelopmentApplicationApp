@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/categories_fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="horizontal">
 
-       <TextView
-           android:id="@+id/tvCategories"
-           android:layout_width="385dp"
-           android:layout_height="643dp"
-           android:gravity="center"
-           android:text="@string/fragment_list_of_categories"
-           android:textSize="@dimen/list_of_categories"
-           android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/fragment_list_of_categories"
+        android:textSize="@dimen/list_of_categories"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="224dp">
+
+        <ImageView
+            android:id="@+id/headerImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/heder_image"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/headerTitle"
+            style="@style/StyleTitle14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/share_rounded_screen_header"
+            android:padding="8dp"
+            android:text="@string/button_category"
+            android:textColor="#5F3678"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="165dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
