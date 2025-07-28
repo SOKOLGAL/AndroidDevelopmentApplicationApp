@@ -12,5 +12,9 @@
     <dimen name="fragment_of_layout">0dp</dimen>
     <dimen name="list_of_categories">25sp</dimen>
     <dimen name="fragment_indent">16dp</dimen>
+    <dimen name="header_height">224dp</dimen>
+    <dimen name="header_title_indents">10dp</dimen>
+    <dimen name="internal_padding_header">8dp</dimen>
+    <dimen name="header_title_font_size">20sp</dimen>
 
 </resources>
