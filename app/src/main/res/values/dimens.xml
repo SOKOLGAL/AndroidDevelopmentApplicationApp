@@ -16,5 +16,8 @@
     <dimen name="header_title_indents">10dp</dimen>
     <dimen name="internal_padding_header">8dp</dimen>
     <dimen name="header_title_font_size">20sp</dimen>
+    <dimen name="corner_radius_header">8dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="size_text_of_categories">18sp</dimen>
 
 </resources>
