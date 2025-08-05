@@ -5,7 +5,7 @@
     android:id="@+id/categories_fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/backgroundColor"
+    android:background="@color/backgroundColor"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,8 +18,9 @@
             android:id="@+id/headerImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="На картинке изображены готовые блюда"
             android:scaleType="centerCrop"
-            android:src="@drawable/heder_categories_image"
+            android:src="@drawable/header_categories_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,10 +29,10 @@
             style="@style/HeaderTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/header_title_indents"
+            android:layout_margin="@dimen/main_padding"
             android:layout_marginBottom="@dimen/main_padding"
             android:background="@drawable/share_rounded_screen_header"
-            android:padding="@dimen/internal_padding_header"
+            android:padding="@dimen/header_title_indents"
             android:text="@string/button_category"
             app:layout_constraintBottom_toBottomOf="@+id/headerImage"
             app:layout_constraintStart_toStartOf="parent" />
