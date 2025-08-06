@@ -20,4 +20,17 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="CardTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_alternates_semi_bold</item>
+        <item name="android:textSize">@dimen/size_text_card</item>
+        <item name="android:textColor">@color/headerTitleColor</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="CardDescriptionText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_variable_font_wght</item>
+        <item name="android:textSize">@dimen/size_text_description_card</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

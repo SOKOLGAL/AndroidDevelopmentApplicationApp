@@ -11,30 +11,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/header_height"
-        android:contentDescription="@string/image_categories">
+        android:layout_height="@dimen/header_height">
 
         <ImageView
-            android:id="@+id/headerImage"
+            android:id="@+id/ivHeaderCategories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="На картинке изображены готовые блюда"
+            android:contentDescription="@string/content_description_image_categories"
             android:scaleType="centerCrop"
             android:src="@drawable/header_categories_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/headerTitle"
+            android:id="@+id/tvHeaderCategoriesTitle"
             style="@style/HeaderTitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/main_padding"
-            android:layout_marginBottom="@dimen/main_padding"
             android:background="@drawable/share_rounded_screen_header"
             android:padding="@dimen/header_title_indents"
             android:text="@string/button_category"
-            app:layout_constraintBottom_toBottomOf="@+id/headerImage"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHeaderCategories"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
