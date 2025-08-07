@@ -28,7 +28,7 @@
     </style>
 
     <style name="CardDescriptionText" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/montserrat_variable_font_wght</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textSize">@dimen/size_text_description_card</item>
         <item name="android:textColor">@color/black</item>
     </style>
