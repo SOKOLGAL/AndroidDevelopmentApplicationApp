@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp
 
 data class Ingredient(
     val quantity: String,

@@ -13,4 +13,24 @@
         <item name="cornerRadius">@dimen/button_rounding_radius</item>
     </style>
 
+    <style name="HeaderTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_alternates_semi_bold</item>
+        <item name="android:textSize">@dimen/header_title_font_size</item>
+        <item name="android:textColor">@color/headerTitleColor</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="CardTitleText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_alternates_semi_bold</item>
+        <item name="android:textSize">@dimen/size_text_card</item>
+        <item name="android:textColor">@color/headerTitleColor</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="CardDescriptionText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/size_text_description_card</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

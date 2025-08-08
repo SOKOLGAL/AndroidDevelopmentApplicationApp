@@ -1,11 +1,10 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.androidapplicationdevelopmentxml.databinding.ActivityMainBinding
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment : Fragment() {
