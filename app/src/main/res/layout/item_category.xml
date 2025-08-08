@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/half_main_padding"
+    android:layout_margin="@dimen/half_main_padding_8"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    card_view:cardCornerRadius="@dimen/corner_radius_header"
-    card_view:cardElevation="@dimen/card_elevation">
+    card_view:cardCornerRadius="@dimen/corner_radius_8"
+    card_view:cardElevation="@dimen/card_elevation_4">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/ivCategoryImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_height_of_categories"
+            android:layout_height="@dimen/card_height_of_categories_130"
             android:contentDescription="@string/card_category"
             android:scaleType="centerCrop"
             tools:src="@drawable/burger" />
@@ -29,8 +29,8 @@
             style="@style/CardTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/half_main_padding"
-            android:layout_marginTop="@dimen/half_main_padding"
+            android:layout_marginStart="@dimen/half_main_padding_8"
+            android:layout_marginTop="@dimen/half_main_padding_8"
             tools:text="@string/tools_card_category" />
 
         <TextView
@@ -38,9 +38,9 @@
             style="@style/CardDescriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/half_main_padding"
-            android:layout_marginBottom="@dimen/header_title_indents"
-            android:layout_marginTop="@dimen/half_main_padding"
+            android:layout_marginHorizontal="@dimen/half_main_padding_8"
+            android:layout_marginBottom="@dimen/main_padding_indent_10"
+            android:layout_marginTop="@dimen/half_main_padding_8"
             tools:text="@string/tools_card_description_category" />
 
     </LinearLayout>

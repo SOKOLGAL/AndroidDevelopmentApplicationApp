@@ -9,9 +9,9 @@
         android:id="@+id/mainContainer"
         android:layout_width="@dimen/fragment_of_layout"
         android:layout_height="@dimen/fragment_of_layout"
-        android:layout_marginStart="@dimen/fragment_indent"
-        android:layout_marginTop="@dimen/height_fragment"
-        android:layout_marginEnd="@dimen/fragment_indent"
+        android:layout_marginStart="@dimen/main_padding_16"
+        android:layout_marginTop="@dimen/height_fragment_272"
+        android:layout_marginEnd="@dimen/main_padding_16"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,31 +28,31 @@
         <Button
             android:id="@+id/btn_categories"
             style="@style/StyleNavButton"
-            android:layout_width="@dimen/button_width"
+            android:layout_width="@dimen/button_width_162"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/half_main_padding"
-            android:layout_marginStart="@dimen/main_padding"
+            android:layout_marginVertical="@dimen/half_main_padding_8"
+            android:layout_marginStart="@dimen/main_padding_16"
             android:layout_marginEnd="@dimen/main_distance_between_buttons"
             android:layout_weight="1"
             android:backgroundTint="@color/categoryButtonColor"
-            android:paddingVertical="@dimen/half_main_padding_button_indent"
+            android:paddingVertical="@dimen/main_padding_indent_10"
             android:text="@string/button_category" />
 
         <Button
             android:id="@+id/btn_favorites"
             style="@style/StyleNavButton"
-            android:layout_width="@dimen/button_width"
+            android:layout_width="@dimen/button_width_162"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/half_main_padding"
+            android:layout_marginVertical="@dimen/half_main_padding_8"
             android:layout_marginStart="@dimen/main_distance_between_buttons"
-            android:layout_marginEnd="@dimen/main_padding"
+            android:layout_marginEnd="@dimen/main_padding_16"
             android:layout_weight="1"
             android:backgroundTint="@color/favoritesButtonColor"
-            android:paddingVertical="@dimen/half_main_padding_button_indent"
+            android:paddingVertical="@dimen/main_padding_indent_10"
             android:text="@string/button_favorites"
             app:icon="@drawable/ic_heart_empty"
             app:iconGravity="textEnd"
-            app:iconPadding="@dimen/icon_favorites_button" />
+            app:iconPadding="@dimen/main_padding_indent_10" />
 
     </LinearLayout>
 
