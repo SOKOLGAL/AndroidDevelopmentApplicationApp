@@ -11,7 +11,6 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.ActivityMainBinding
-import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.CategoriesListFragment
 import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.FavoritesFragment
 
 class MainActivity : AppCompatActivity() {
