@@ -3,44 +3,46 @@ package com.example.androiddevelopmentapplicationapp
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidapplicationdevelopmentxml.R
+import com.example.androidapplicationdevelopmentxml.databinding.ItemCategoryBinding
 import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.Category
+import kotlin.with
 
 class CategoriesListAdapter(
     private val dataset: List<Category>
 ) : RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findViewById(R.id.ivCategoryImage)
-        val titleTextView: TextView = view.findViewById(R.id.tvCategoryTitle)
-        val descriptionTextView: TextView = view.findViewById(R.id.tvCategoryDescription)
+    class ViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        val ivCategoryImage: ImageView = binding.ivCategoryImage
+        val tvCategoryTitle: TextView = binding.tvCategoryTitle
+        val tvCategoryDescription: TextView = binding.tvCategoryDescription
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_category, parent, false)
-        return ViewHolder(view)
+        val binding =
+            ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = dataset[position]
-        holder.titleTextView.text = category.title as CharSequence?
-        holder.descriptionTextView.text = category.description
+        with(holder) {
+            tvCategoryTitle.text = category.title
+            tvCategoryDescription.text = category.description
 
-        val drawable: Drawable? = try {
-            holder.imageView.context.assets.open(category.imageUrl).use { inputStream ->
-                Drawable.createFromStream(inputStream, null)
+            val drawable: Drawable? = try {
+                itemView.context.assets.open(category.imageUrl).use { inputStream ->
+                    Drawable.createFromStream(inputStream, null)
+                }
+            } catch (e: Exception) {
+                Log.d("CategoriesListAdapter", "Image not found: ${category.imageUrl}")
+                null
             }
-        } catch (e: Exception) {
-            Log.d("CategoriesListAdapter", "Image not found: ${category.imageUrl}")
-            null
+            ivCategoryImage.setImageDrawable(drawable)
         }
-        holder.imageView.setImageDrawable(drawable)
     }
 
     override fun getItemCount(): Int = dataset.size

@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
-import com.example.androiddevelopmentapplicationapp.CategoriesListAdapter
+import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.STUB
 
 class CategoriesListFragment : Fragment() {
 
