@@ -20,6 +20,7 @@ class CategoriesListAdapter(
         val tvCategoryDescription: TextView = binding.tvCategoryDescription
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,12 +29,12 @@ class CategoriesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = dataset[position]
-        with(holder) {
+        with(holder.binding) {
             tvCategoryTitle.text = category.title
             tvCategoryDescription.text = category.description
 
             val drawable: Drawable? = try {
-                itemView.context.assets.open(category.imageUrl).use { inputStream ->
+                root.context.assets.open(category.imageUrl).use { inputStream ->
                     Drawable.createFromStream(inputStream, null)
                 }
             } catch (e: Exception) {
@@ -41,7 +42,20 @@ class CategoriesListAdapter(
                 null
             }
             ivCategoryImage.setImageDrawable(drawable)
+            root.setOnClickListener {
+                itemClickListener?.onItemClick(category)
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(category: Category)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
     }
 
     override fun getItemCount(): Int = dataset.size
