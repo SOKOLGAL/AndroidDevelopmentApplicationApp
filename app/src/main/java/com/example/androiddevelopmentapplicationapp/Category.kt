@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp
 
 data class Category(
     val id: Int,
