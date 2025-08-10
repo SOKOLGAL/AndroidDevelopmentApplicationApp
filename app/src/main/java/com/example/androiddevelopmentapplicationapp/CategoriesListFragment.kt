@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
-import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.STUB
 
 class CategoriesListFragment : Fragment() {
 

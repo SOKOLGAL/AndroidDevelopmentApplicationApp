@@ -9,8 +9,6 @@
         android:id="@+id/mainContainer"
         android:layout_width="@dimen/fragment_of_layout"
         android:layout_height="@dimen/fragment_of_layout"
-        android:layout_marginStart="@dimen/main_padding_16"
-        android:layout_marginEnd="@dimen/main_padding_16"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

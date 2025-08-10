@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemCategoryBinding
-import com.example.androiddevelopmentapplicationapp.com.example.androiddevelopmentapplicationapp.Category
 import kotlin.with
 
 class CategoriesListAdapter(
