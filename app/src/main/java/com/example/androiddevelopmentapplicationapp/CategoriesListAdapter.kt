@@ -14,12 +14,21 @@ class CategoriesListAdapter(
     private val dataset: List<Category>
 ) : RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
+    private var itemClickListener: OnItemClickListener? = null
+
+    interface OnItemClickListener {
+        fun onItemClick(category: Category)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
+
     class ViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val ivCategoryImage: ImageView = binding.ivCategoryImage
         val tvCategoryTitle: TextView = binding.tvCategoryTitle
         val tvCategoryDescription: TextView = binding.tvCategoryDescription
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -46,16 +55,6 @@ class CategoriesListAdapter(
                 itemClickListener?.onItemClick(category)
             }
         }
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(category: Category)
-    }
-
-    private var itemClickListener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        itemClickListener = listener
     }
 
     override fun getItemCount(): Int = dataset.size
