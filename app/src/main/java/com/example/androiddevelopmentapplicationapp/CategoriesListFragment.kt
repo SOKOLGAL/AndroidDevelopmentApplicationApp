@@ -43,8 +43,8 @@ class CategoriesListFragment : Fragment() {
         binding.rvCategories.adapter = adapter
 
         adapter.setOnItemClickListener(object : CategoriesListAdapter.OnItemClickListener {
-            override fun onItemClick(category: Int) {
-                openRecipesByCategoryId(category)
+            override fun onItemClick(categoryId: Int) {
+                openRecipesByCategoryId(categoryId)
             }
         })
     }
