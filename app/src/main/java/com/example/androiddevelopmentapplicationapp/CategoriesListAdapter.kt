@@ -17,7 +17,7 @@ class CategoriesListAdapter(
     private var itemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
-        fun onItemClick(category: Category)
+        fun onItemClick(category: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -52,7 +52,7 @@ class CategoriesListAdapter(
             }
             ivCategoryImage.setImageDrawable(drawable)
             root.setOnClickListener {
-                itemClickListener?.onItemClick(category)
+                itemClickListener?.onItemClick(category.id)
             }
         }
     }
