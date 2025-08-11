@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
@@ -47,10 +49,10 @@ class CategoriesListFragment : Fragment() {
     }
 
     private fun openRecipesByCategoryId() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.mainContainer, RecipesListFragment())
-            .addToBackStack(null)
-            .commit()
+        parentFragmentManager.commit {
+            replace<RecipesListFragment>(R.id.mainContainer)
+            addToBackStack(null)
+        }
     }
 
     override fun onDestroyView() {
