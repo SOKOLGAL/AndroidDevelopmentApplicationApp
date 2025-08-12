@@ -29,7 +29,6 @@ class RecipesListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.binding.tvRecipeTitle.text = recipe.title
-        holder.binding.tvRecipeDescription.text = recipe.description
 
         try {
             holder.binding.root.context.assets.open(recipe.imageUrl).use { inputStream ->
