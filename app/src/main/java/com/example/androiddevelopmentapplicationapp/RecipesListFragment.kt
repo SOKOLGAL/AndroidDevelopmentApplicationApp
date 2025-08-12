@@ -14,9 +14,9 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let { args ->
-            categoryId = args.getInt(CategoriesListFragment.ARG_CATEGORY_ID)
-            categoryName = args.getString(CategoriesListFragment.ARG_CATEGORY_NAME)
-            categoryImageUrl = args.getString(CategoriesListFragment.ARG_CATEGORY_IMAGE_URL)
+            categoryId = args.getInt(Constants.ARG_CATEGORY_ID)
+            categoryName = args.getString(Constants.ARG_CATEGORY_NAME)
+            categoryImageUrl = args.getString(Constants.ARG_CATEGORY_IMAGE_URL)
         }
         initRecycler()
     }
