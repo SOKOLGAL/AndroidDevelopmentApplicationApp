@@ -42,4 +42,79 @@ object STUB {
     )
 
     fun getCategories(): List<Category> = categories
+
+    private val burgerRecipes = listOf(
+        Recipe(
+            id = 0,
+            title = "Классический гамбургер",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "Сочный говяжий котлет, свежие овощи, соус",
+            imageUrl = "burger_hamburger.png",
+                  ),
+        Recipe(
+            id = 1,
+            title = "Чизбургер",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "Бургер с сыром чеддер и карамелизированным луком",
+            imageUrl = "burger_cheeseburger.png"
+        ),
+        Recipe(
+            id = 2,
+            title = "Бургер с грибами и сыром",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_mushrooms.png"
+        ),
+        Recipe(
+            id = 3,
+            title = "Бургер с курицей и авокадо",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_avocado.png"
+        ),
+        Recipe(
+            id = 4,
+            title = "Бургер с рыбой",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_fish.png"
+        ),
+        Recipe(
+            id = 5,
+            title = "Бургер с беконом",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_bacon.png"
+        ),
+        Recipe(
+            id = 6,
+            title = "Веганский бургер",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_vegan.png"
+        ),
+        Recipe(
+            id = 7,
+            title = "Острый бургер",
+            ingredients = listOf(),
+            method = listOf(),
+            description = "",
+            imageUrl = "burger_chili.png"
+        )
+    )
+
+    fun getRecipesByCategoryId(categoryId: Int): List<Recipe> {
+        return if (categoryId == 0) {
+            burgerRecipes
+        } else {
+            emptyList()
+        }
+    }
 }

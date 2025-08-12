@@ -7,7 +7,9 @@
     <string name="fragment_list_of_categories">Список категорий</string>
     <string name="image_categories">Изображение категории</string>
     <string name="content_description_image_categories">Изображение экрана с категориями</string>
+    <string name="content_description_image_recipes">Изображение экрана с рецептами</string>
     <string name="card_category">Изображение карточки категории</string>
+    <string name="recipe_image">Изображение рецепта</string>
     <string name="tools_card_category">Бургеры</string>
     <string name="tools_card_description_category">Рецепты всех популярных видов бургеров</string>
 
