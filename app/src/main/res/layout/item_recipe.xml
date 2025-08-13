@@ -1,42 +1,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:gravity="center_vertical">
-
-    <ImageView
-        android:id="@+id/ivRecipeImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/recipe_image" />
+    android:padding="12dp">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingStart="12dp">
+        tools:ignore="ExtraText,UselessParent">
+
+        <ImageView
+            android:id="@+id/ivRecipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/recipe_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/burger_cheeseburger" />
 
         <TextView
             android:id="@+id/tvRecipeTitle"
-            android:layout_width="wrap_content"
+            style="@style/CardTitleText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Название рецепта"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
+            android:layout_marginStart="@dimen/half_main_padding_8"
+            android:layout_marginTop="@dimen/half_main_padding_8"
+            android:ellipsize="end"
             android:maxLines="1"
-            android:ellipsize="end" />
-
-        <TextView
-            android:id="@+id/tvRecipeDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Краткое описание рецепта"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:maxLines="2"
-            android:ellipsize="end" />
+            android:text="Название рецепта"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="Чизбургер" />
+        
     </LinearLayout>
+
 </LinearLayout>
