@@ -1,5 +1,8 @@
 package com.example.androiddevelopmentapplicationapp
 
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.LinearLayoutManager
+
 object STUB {
 
     private val categories = listOf(
@@ -264,6 +267,19 @@ object STUB {
             imageUrl = "burger_chili.png"
         )
     )
+
+    private lateinit var recipesAdapter: RecipesListAdapter
+
+    private fun initRecycler() {
+        val recipes = STUB.getRecipesByCategoryId(categoryId ?: 0)
+
+        recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
+            openRecipeByRecipeId(recipeId)
+        }
+
+        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecipes.adapter = recipesAdapter
+    }
 
     fun getRecipesByCategoryId(categoryId: Int): List<Recipe> {
         return if (categoryId == 0) {

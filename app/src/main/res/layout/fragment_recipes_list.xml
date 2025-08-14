@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
+    android:src="@android:color/transparent"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,29 +15,29 @@
         android:layout_height="@dimen/header_height_224">
 
         <ImageView
-            android:id="@+id/ivCategoryImage"
+            android:id="@+id/ivRecipeImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:contentDescription="@string/content_description_image_recipes"
             android:scaleType="centerCrop"
-            android:src="@drawable/bcg_recipes_list"
+            android:src=""
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tvCategoryName"
-            style="@style/HeaderTitleText"
+            style="@style/ListRecipesBurgerText"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/main_padding_16"
             android:layout_width="wrap_content"
             android:background="@drawable/share_rounded_screen_header"
             android:padding="@dimen/main_padding_indent_10"
-            android:text="Бургеры"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivCategoryImage"
+            android:textColor="@color/headerTitleColor"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRecipeImage"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="UnknownIdInLayout" />
+            tools:text="Бургеры"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -46,7 +47,7 @@
         android:layout_weight="1"
         android:layout_margin="@dimen/half_main_padding_8"
         tools:itemCount="8"
-        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:LinearLayoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_recipe"
         tools:spanCount="1"/>
 

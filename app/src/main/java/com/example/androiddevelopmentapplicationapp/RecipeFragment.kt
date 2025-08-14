@@ -14,7 +14,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recipeId = arguments?.getInt("recipe_id")
+        recipeId = arguments?.getInt(Constants.ARG_RECIPE_ID)
 
         val textView = view.findViewById<TextView>(R.id.tvCategoryName)
         textView.text = """RecipeFragment: recipeId = $recipeId"""

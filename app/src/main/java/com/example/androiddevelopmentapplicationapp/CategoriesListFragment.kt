@@ -66,6 +66,20 @@ class CategoriesListFragment : Fragment() {
         }
     }
 
+    private fun openCategoryRecipes(categoryId: Int) {
+        val bundle = bundleOf(
+            Constants.ARG_CATEGORY_ID to categoryId,
+            Constants.ARG_CATEGORY_NAME to "Бургеры",
+            Constants.ARG_CATEGORY_IMAGE_URL to "bcg_recipes_list.png"  // Файл в папке assets
+        )
+
+        parentFragmentManager.commit {
+            replace<RecipesListFragment>(R.id.mainContainer, args = bundle)
+            addToBackStack(null)
+        }
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

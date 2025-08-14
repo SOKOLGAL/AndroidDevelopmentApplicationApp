@@ -19,10 +19,10 @@
         <ImageView
             android:id="@+id/ivCategoryImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_height_of_categories_130"
-            android:contentDescription="@string/card_category"
+            android:layout_height="200dp"
+            android:src="@android:color/transparent"
             android:scaleType="centerCrop"
-            tools:src="@drawable/burger" />
+            tools:background=""/>
 
         <TextView
             android:id="@+id/tvCategoryTitle"

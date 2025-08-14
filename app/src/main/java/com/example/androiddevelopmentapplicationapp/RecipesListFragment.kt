@@ -20,7 +20,8 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     private var categoryImageUrl: String? = null
 
     private var _binding: FragmentRecipesListBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding ?: throw IllegalArgumentException("ActivityMainBinding is null!")
 
     private lateinit var recipesAdapter: RecipesListAdapter
     private var recipesList: List<Recipe> = emptyList()
@@ -45,13 +46,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         initHeader()
     }
 
-    private fun openRecipeByRecipeId(recipeId: Int) {
-        parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment())
-            addToBackStack(null)
-        }
-    }
-
     private fun initHeader() {
         val categoryName = arguments?.getString(Constants.ARG_CATEGORY_NAME) ?: "Категория"
         val categoryImageUrl = arguments?.getString(Constants.ARG_CATEGORY_IMAGE_URL) ?: ""
@@ -64,12 +58,12 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
                 binding.ivCategoryImage.setImageDrawable(drawable)
             }
         } catch (e: Exception) {
-            binding.ivCategoryImage.setImageResource(R.drawable.burger)
+            binding.ivCategoryImage.setImageResource(android.R.color.darker_gray)
         }
     }
 
-    private fun openRecipeFragment(recipeId: Int) {
-        val bundle = bundleOf("recipe_id" to recipeId)
+    private fun openRecipeByRecipeId(recipeId: Int) {
+        val bundle = bundleOf(Constants.ARG_RECIPE_ID to recipeId)
         parentFragmentManager.commit {
             replace<RecipeFragment>(R.id.mainContainer, args = bundle)
             addToBackStack(null)
@@ -88,5 +82,4 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         super.onDestroyView()
         _binding = null
     }
-
 }

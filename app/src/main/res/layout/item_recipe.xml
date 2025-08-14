@@ -4,36 +4,26 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="@dimen/half_main_padding_8">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/ivRecipeImage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:contentDescription="@string/recipe_image"
+        android:scaleType="centerCrop"
+        tools:src="" />
+
+    <TextView
+        android:id="@+id/tvRecipeTitle"
+        style="@style/NameRecipeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="ExtraText,UselessParent">
-
-        <ImageView
-            android:id="@+id/ivRecipeImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/recipe_image"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/burger_cheeseburger" />
-
-        <TextView
-            android:id="@+id/tvRecipeTitle"
-            style="@style/CardTitleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/half_main_padding_8"
-            android:layout_marginTop="@dimen/half_main_padding_8"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Название рецепта"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            tools:text="Чизбургер" />
-        
-    </LinearLayout>
+        android:layout_marginStart="@dimen/half_main_padding_8"
+        android:layout_marginTop="@dimen/half_main_padding_8"
+        android:layout_marginEnd="@dimen/half_main_padding_8"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Чизбургер" />
 
 </LinearLayout>

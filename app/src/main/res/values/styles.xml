@@ -33,4 +33,16 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="ListRecipesBurgerText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/size_text_list_recipes_burger</item>
+        <item name="android:textColor">@color/headerTitleColor</item>
+    </style>
+
+    <style name="NameRecipeText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/size_text_of_categories</item>
+        <item name="android:textColor">@color/headerTitleColor</item>
+    </style>
+
 </resources>
