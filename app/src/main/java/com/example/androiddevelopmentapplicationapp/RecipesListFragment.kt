@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -55,10 +56,10 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         try {
             requireContext().assets.open(categoryImageUrl).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, null)
-                binding.ivCategoryImage.setImageDrawable(drawable)
+                binding.ivRecipeImage.setImageDrawable(drawable)
             }
         } catch (e: Exception) {
-            binding.ivCategoryImage.setImageResource(android.R.color.darker_gray)
+            binding.ivRecipeImage.setImageResource(android.R.color.darker_gray)
         }
     }
 
@@ -71,11 +72,16 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     }
 
     private fun initRecycler() {
-        recipesAdapter = RecipesListAdapter(recipesList) { recipeId ->
+        val categoryId = arguments?.getInt(Constants.ARG_CATEGORY_ID) ?: 0
+        val recipes = STUB.getRecipesByCategoryId(categoryId)
+
+        recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
+
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecipes.adapter = recipesAdapter
+
     }
 
     override fun onDestroyView() {

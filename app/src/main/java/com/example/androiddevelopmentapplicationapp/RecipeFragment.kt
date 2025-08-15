@@ -2,21 +2,54 @@ package com.example.androiddevelopmentapplicationapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
+import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
 
 class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
+    private lateinit var binding: FragmentRecipesListBinding
+    private var recipeId: Int = 0
 
-    private var recipeId: Int? = null
-
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recipeId = arguments?.getInt(Constants.ARG_RECIPE_ID)
 
-        val textView = view.findViewById<TextView>(R.id.tvCategoryName)
-        textView.text = """RecipeFragment: recipeId = $recipeId"""
+        try {
+            binding = FragmentRecipesListBinding.bind(view)
+
+            recipeId = arguments?.getInt(Constants.ARG_RECIPE_ID) ?: 0
+            Log.e("RecipeFragment", "RecipeId: $recipeId")
+
+            val recipe = try {
+                STUB.getRecipeById(recipeId)
+            } catch (e: Exception) {
+                Log.e("RecipeFragment", "Error getting recipe", e)
+                null
+            }
+
+            recipe?.let {
+                binding.tvCategoryName.text = it.title
+            } ?: run {
+                binding.tvCategoryName.text = "Рецепт не найден"
+                Log.e("RecipeFragment", "Recipe is null")
+            }
+        } catch (e: Exception) {
+            Log.e("RecipeFragment", "Critical error in onViewCreated", e)
+            // Показать пользователю сообщение об ошибке
+            Toast.makeText(requireContext(), "Ошибка загрузки рецепта", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    companion object {
+        fun newInstance(recipeId: Int): RecipeFragment {
+            return RecipeFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(Constants.ARG_RECIPE_ID, recipeId)
+                }
+            }
+        }
     }
 }

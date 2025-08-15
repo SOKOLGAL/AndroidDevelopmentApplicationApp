@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="@dimen/half_main_padding_8">
 
     <ImageView
         android:id="@+id/ivRecipeImage"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/card_height_of_recipes_100"
         android:contentDescription="@string/recipe_image"
         android:scaleType="centerCrop"
         tools:src="" />
@@ -19,7 +19,7 @@
         style="@style/NameRecipeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/half_main_padding_8"
+        android:layout_margin="@dimen/half_main_padding_8"
         android:layout_marginTop="@dimen/half_main_padding_8"
         android:layout_marginEnd="@dimen/half_main_padding_8"
         android:ellipsize="end"

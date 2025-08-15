@@ -268,19 +268,10 @@ object STUB {
         )
     )
 
-    private lateinit var recipesAdapter: RecipesListAdapter
-
-    private fun initRecycler() {
-        val recipes = STUB.getRecipesByCategoryId(categoryId ?: 0)
-
-        recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
-            openRecipeByRecipeId(recipeId)
-        }
-
-        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvRecipes.adapter = recipesAdapter
+    fun getRecipeById(recipeId: Int): Recipe {
+        return burgerRecipes.find { it.id == recipeId }
+            ?: burgerRecipes.first() // Возвращаем первый рецепт, если не найден
     }
-
     fun getRecipesByCategoryId(categoryId: Int): List<Recipe> {
         return if (categoryId == 0) {
             burgerRecipes

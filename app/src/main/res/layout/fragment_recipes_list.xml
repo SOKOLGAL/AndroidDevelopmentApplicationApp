@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:src="@android:color/transparent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:src="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
@@ -20,35 +20,34 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/content_description_image_recipes"
             android:scaleType="centerCrop"
-            android:src=""
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/bcg_recipes_list"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvCategoryName"
-            style="@style/ListRecipesBurgerText"
+            style="@style/HeaderTitleText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/main_padding_16"
-            android:layout_width="wrap_content"
             android:background="@drawable/share_rounded_screen_header"
             android:padding="@dimen/main_padding_indent_10"
-            android:textColor="@color/headerTitleColor"
             app:layout_constraintBottom_toBottomOf="@+id/ivRecipeImage"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Бургеры"/>
+            tools:text="Бургеры" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecipes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_margin="@dimen/half_main_padding_8"
-        tools:itemCount="8"
+        android:layout_weight="1"
         tools:LinearLayoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:itemCount="8"
         tools:listitem="@layout/item_recipe"
-        tools:spanCount="1"/>
+        tools:spanCount="1" />
 
 </LinearLayout>
