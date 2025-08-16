@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,32 +9,33 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/corner_radius_8"
-    app:cardElevation="@dimen/card_elevation_4">
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="@dimen/corner_radius_8"
+    card_view:cardElevation="@dimen/card_elevation_4">
 
-    <ImageView
-        android:id="@+id/ivRecipeImage"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/recipe_image"
-        android:scaleType="centerCrop"
-        app:cardCornerRadius="@dimen/corner_radius_8"
-        tools:src="@drawable/bcg_recipes_list" />
-
-    <TextView
-        android:id="@+id/tvRecipeTitle"
-        style="@style/NameRecipeText"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="2"
-        tools:text="Бургер с грибами и сыром" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivRecipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_height_of_recipes_100"
+            android:contentDescription="@string/recipe_image"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/bcg_recipes_list" />
+
+        <TextView
+            android:id="@+id/tvRecipeTitle"
+            style="@style/NameRecipeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_main_padding_8"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="Бургер с грибами и сыром" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
