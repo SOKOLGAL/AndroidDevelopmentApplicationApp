@@ -20,9 +20,8 @@
             android:id="@+id/ivCategoryImage"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_height_of_categories_130"
-            android:contentDescription="@string/card_category"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/burger" />
+            android:src="@drawable/bcg_recipes_list"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tvCategoryTitle"

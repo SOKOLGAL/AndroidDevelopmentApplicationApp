@@ -55,9 +55,9 @@ class CategoriesListFragment : Fragment() {
         val categoryImageUrl = category?.imageUrl ?: ""
 
         val bundle = bundleOf(
-            ARG_CATEGORY_ID to categoryId,
-            ARG_CATEGORY_NAME to categoryName,
-            ARG_CATEGORY_IMAGE_URL to categoryImageUrl
+            Constants.ARG_CATEGORY_ID to categoryId,
+            Constants.ARG_CATEGORY_NAME to categoryName,
+            Constants.ARG_CATEGORY_IMAGE_URL to categoryImageUrl
         )
 
         parentFragmentManager.commit {
@@ -71,9 +71,4 @@ class CategoriesListFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        const val ARG_CATEGORY_ID = "categoryId"
-        const val ARG_CATEGORY_NAME = "categoryName"
-        const val ARG_CATEGORY_IMAGE_URL = "categoryImageUrl"
-    }
 }
