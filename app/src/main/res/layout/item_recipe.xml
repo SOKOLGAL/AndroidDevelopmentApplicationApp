@@ -1,29 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_main_padding_8"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:padding="@dimen/half_main_padding_8">
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/corner_radius_8"
+    app:cardElevation="@dimen/card_elevation_4">
 
     <ImageView
         android:id="@+id/ivRecipeImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_height_of_recipes_100"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
         android:contentDescription="@string/recipe_image"
         android:scaleType="centerCrop"
-        tools:src="" />
+        app:cardCornerRadius="@dimen/corner_radius_8"
+        tools:src="@drawable/bcg_recipes_list" />
 
     <TextView
         android:id="@+id/tvRecipeTitle"
         style="@style/NameRecipeText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/half_main_padding_8"
-        android:layout_marginTop="@dimen/half_main_padding_8"
-        android:layout_marginEnd="@dimen/half_main_padding_8"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
         android:ellipsize="end"
-        android:maxLines="1"
-        tools:text="Чизбургер" />
+        android:maxLines="2"
+        tools:text="Бургер с грибами и сыром" />
 
 </LinearLayout>

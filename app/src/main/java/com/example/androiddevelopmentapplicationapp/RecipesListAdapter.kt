@@ -1,6 +1,7 @@
 package com.example.androiddevelopmentapplicationapp
 
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,15 +29,19 @@ class RecipesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = recipes[position]
-        holder.binding.tvRecipeTitle.text = recipe.title
 
-        try {
-            holder.binding.root.context.assets.open(recipe.imageUrl).use { inputStream ->
-                val drawable = Drawable.createFromStream(inputStream, null)
-                holder.binding.ivRecipeImage.setImageDrawable(drawable)
+        with(holder.binding) {
+            tvRecipeTitle.text = recipe.title
+
+            try {
+                root.context.assets.open(recipe.imageUrl).use { inputStream ->
+                    val drawable = Drawable.createFromStream(inputStream, null)
+                    ivRecipeImage.setImageDrawable(drawable)
+                }
+            } catch (e: Exception) {
+                Log.e("RecipesAdapter", "Error loading image: ${recipe.imageUrl}", e)
+                ivRecipeImage.setImageResource(android.R.color.darker_gray)
             }
-        } catch (e: Exception) {
-            holder.binding.ivRecipeImage.setImageResource(android.R.color.darker_gray)
         }
     }
 

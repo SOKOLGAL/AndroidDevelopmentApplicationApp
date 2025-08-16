@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -25,7 +24,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         get() = _binding ?: throw IllegalArgumentException("ActivityMainBinding is null!")
 
     private lateinit var recipesAdapter: RecipesListAdapter
-    private var recipesList: List<Recipe> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,20 +39,17 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         arguments?.let { args ->
             categoryId = args.getInt(Constants.ARG_CATEGORY_ID)
             categoryName = args.getString(Constants.ARG_CATEGORY_NAME)
-            categoryImageUrl = args.getString(Constants.ARG_CATEGORY_IMAGE_URL)
+            categoryImageUrl = args.getString(Constants.ARG_CATEGORY_IMAGE_URL).toString()
         }
         initRecycler()
         initHeader()
     }
 
     private fun initHeader() {
-        val categoryName = arguments?.getString(Constants.ARG_CATEGORY_NAME) ?: "Категория"
-        val categoryImageUrl = arguments?.getString(Constants.ARG_CATEGORY_IMAGE_URL) ?: ""
-
         binding.tvCategoryName.text = categoryName
 
         try {
-            requireContext().assets.open(categoryImageUrl).use { inputStream ->
+            requireContext().assets.open(categoryImageUrl.toString()).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, null)
                 binding.ivRecipeImage.setImageDrawable(drawable)
             }
@@ -72,7 +67,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     }
 
     private fun initRecycler() {
-        val categoryId = arguments?.getInt(Constants.ARG_CATEGORY_ID) ?: 0
         val recipes = STUB.getRecipesByCategoryId(categoryId)
 
         recipesAdapter = RecipesListAdapter(recipes) { recipeId ->

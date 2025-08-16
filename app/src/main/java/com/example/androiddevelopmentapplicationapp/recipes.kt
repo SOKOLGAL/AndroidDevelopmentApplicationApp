@@ -1,8 +1,5 @@
 package com.example.androiddevelopmentapplicationapp
 
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.LinearLayoutManager
-
 object STUB {
 
     private val categories = listOf(
@@ -270,9 +267,9 @@ object STUB {
 
     fun getRecipeById(recipeId: Int): Recipe {
         return burgerRecipes.find { it.id == recipeId }
-            ?: burgerRecipes.first() // Возвращаем первый рецепт, если не найден
+            ?: burgerRecipes.first()
     }
-    fun getRecipesByCategoryId(categoryId: Int): List<Recipe> {
+    fun getRecipesByCategoryId(categoryId: Int?): List<Recipe> {
         return if (categoryId == 0) {
             burgerRecipes
         } else {

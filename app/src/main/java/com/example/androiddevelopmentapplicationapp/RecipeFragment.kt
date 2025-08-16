@@ -38,18 +38,8 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
             }
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Critical error in onViewCreated", e)
-            // Показать пользователю сообщение об ошибке
-            Toast.makeText(requireContext(), "Ошибка загрузки рецепта", Toast.LENGTH_SHORT).show()
-        }
-    }
 
-    companion object {
-        fun newInstance(recipeId: Int): RecipeFragment {
-            return RecipeFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(Constants.ARG_RECIPE_ID, recipeId)
-                }
-            }
+            Toast.makeText(requireContext(), "Ошибка загрузки рецепта", Toast.LENGTH_SHORT).show()
         }
     }
 }
