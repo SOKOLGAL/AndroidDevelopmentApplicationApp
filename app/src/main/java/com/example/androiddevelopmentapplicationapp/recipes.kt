@@ -43,7 +43,7 @@ object STUB {
 
     fun getCategories(): List<Category> = categories
 
-    val burgerRecipes = listOf(
+    private val burgerRecipes = listOf(
         Recipe(
             id = 0,
             title = "Классический гамбургер",

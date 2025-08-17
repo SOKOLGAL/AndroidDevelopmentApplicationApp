@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
-import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
+import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipeBinding
 
-class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
-    private lateinit var binding: FragmentRecipesListBinding
+class RecipeFragment : Fragment(R.layout.fragment_recipe) {
+    private var _binding: FragmentRecipeBinding? = null
+    private val binding
+        get() = _binding ?: throw IllegalArgumentException("FragmentRecipeBinding is null!")
+
     private var recipeId: Int = 0
     private lateinit var recipe: Recipe
 
@@ -22,7 +25,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRecipesListBinding.inflate(inflater, container, false)
+        _binding = FragmentRecipeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,7 +43,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
                 null
             } ?: throw IllegalArgumentException("Recipe not found")
 
-            val parcelableRecipe = when {
+            when {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
                     arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
                 }
@@ -51,7 +54,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
                 }
             }
 
-            binding.tvCategoryName.text = recipe.title
+            binding.tvRecipeTitle.text = recipe.title
 
             try {
                 requireContext().assets.open(recipe.imageUrl).use { inputStream ->
@@ -75,6 +78,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipes_list) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 }
