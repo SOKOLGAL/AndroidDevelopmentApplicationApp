@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemIngredientBinding
 
 class IngredientsAdapter(
-    private val dataset: List<Ingredient>
+    private val ingredients: List<Ingredient>
 ) : RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder>() {
-
     inner class IngredientViewHolder(binding: ItemIngredientBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -33,13 +32,12 @@ class IngredientsAdapter(
         holder: IngredientViewHolder,
         position: Int
     ) {
-        val ingredient = dataset[position]
-
+        val ingredient = ingredients[position]
         val quantityText = "${ingredient.quantity} ${ingredient.unitOfMeasure}"
 
         holder.quantityTextView.text = quantityText
         holder.nameTextView.text = ingredient.description
     }
 
-    override fun getItemCount(): Int = dataset.size
+    override fun getItemCount(): Int = ingredients.size
 }

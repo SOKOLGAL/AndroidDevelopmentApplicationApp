@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipeBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private var _binding: FragmentRecipeBinding? = null
@@ -19,6 +21,8 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
     private var recipeId: Int = 0
     private lateinit var recipe: Recipe
+
+    private lateinit var ingredientsAdapter: IngredientsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,6 +77,41 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                 "Не удалось загрузить рецепт: ${e.localizedMessage}",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    private fun createMaterialDivider(): MaterialDividerItemDecoration {
+        return MaterialDividerItemDecoration(
+            requireContext(),
+            MaterialDividerItemDecoration.HORIZONTAL
+        ).apply {
+            isLastItemDecorated = false
+        }
+    }
+
+    private fun initRecyclers() {
+        ingredientsAdapter = IngredientsAdapter(recipe.ingredients)
+        val ingredientsDivider = MaterialDividerItemDecoration(
+            requireContext(),
+            MaterialDividerItemDecoration.VERTICAL
+        )
+        binding.rvIngredients.apply {
+            adapter = ingredientsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(ingredientsDivider)
+        }
+    }
+
+    private fun initUI() {
+        binding.tvRecipeTitle.text = recipe.title
+        try {
+            requireContext().assets.open(recipe.imageUrl).use { inputStream ->
+                val drawable = Drawable.createFromStream(inputStream, null)
+                binding.ivRecipeImage.setImageDrawable(drawable)
+            }
+        } catch (e: Exception) {
+            Log.e("RecipeFragment", "Error loading image", e)
+            binding.ivRecipeImage.setImageResource(R.drawable.bcg_recipes_list)
         }
     }
 
