@@ -12,5 +12,6 @@
     <string name="recipe_image">Изображение рецепта</string>
     <string name="tools_card_category">Бургеры</string>
     <string name="tools_card_description_category">Рецепты всех популярных видов бургеров</string>
+    <string name="fragment_recipe">Фрагмент рецепта</string>
 
 </resources>

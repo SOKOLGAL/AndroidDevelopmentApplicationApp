@@ -2,16 +2,19 @@ package com.example.androiddevelopmentapplicationapp
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
+import com.example.androiddevelopmentapplicationapp.Recipe
+import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
@@ -36,13 +39,23 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         arguments?.let { args ->
             categoryId = args.getInt(Constants.ARG_CATEGORY_ID)
-            categoryName = args.getString(Constants.ARG_CATEGORY_NAME)
-            categoryImageUrl = args.getString(Constants.ARG_CATEGORY_IMAGE_URL).toString()
+            categoryName = args.getString(Constants.ARG_CATEGORY_NAME) ?: ""
+            categoryImageUrl = args.getString(Constants.ARG_CATEGORY_IMAGE_URL) ?: ""
         }
+
         initRecycler()
         initHeader()
+
+        val recipes = getRecipesByCategoryId(categoryId)
+        val adapter = RecipesListAdapter(recipes) { recipeId ->
+            openRecipeByRecipeId(recipeId)
+        }
+
+        binding.rvRecipes.adapter = adapter
+        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun initHeader() {
@@ -59,15 +72,27 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     }
 
     private fun openRecipeByRecipeId(recipeId: Int) {
-        val bundle = bundleOf(Constants.ARG_RECIPE_ID to recipeId)
-        parentFragmentManager.commit {
-            replace<RecipeFragment>(R.id.mainContainer, args = bundle)
-            addToBackStack(null)
+        try {
+            val recipe = STUB.getRecipeById(recipeId)
+            val bundle = Bundle().apply {
+                putInt(Constants.ARG_RECIPE_ID, recipeId)
+            }
+            parentFragmentManager.commit {
+                replace<RecipeFragment>(R.id.mainContainer, args = bundle)
+                addToBackStack(null)
+            }
+        } catch (e: Exception) {
+            Log.e("RecipesListFragment", "Error opening recipe", e)
+            Toast.makeText(
+                requireContext(),
+                "Не удалось открыть рецепт",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun initRecycler() {
-        val recipes = STUB.getRecipesByCategoryId(categoryId)
+        val recipes = getRecipesByCategoryId(categoryId)
 
         recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
