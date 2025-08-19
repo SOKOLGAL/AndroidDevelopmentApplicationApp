@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
@@ -23,6 +24,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private lateinit var recipe: Recipe
 
     private lateinit var ingredientsAdapter: IngredientsAdapter
+    private lateinit var methodAdapter: MethodAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,12 +69,20 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         }
     }
 
-    private fun createMaterialDivider(): MaterialDividerItemDecoration {
-        return MaterialDividerItemDecoration(
-            requireContext(),
-            MaterialDividerItemDecoration.HORIZONTAL
-        ).apply {
-            isLastItemDecorated = false
+    private fun initUI() {
+        binding.tvRecipeTitle.text = recipe.title
+        try {
+            requireContext().assets.open(recipe.imageUrl).use { inputStream ->
+                val drawable = Drawable.createFromStream(inputStream, null)
+                binding.ivRecipeImage.setImageDrawable(drawable)
+
+                // Обновление contentDescription
+                binding.ivRecipeImage.contentDescription = "Фотография блюда: ${recipe.title}"
+            }
+        } catch (e: Exception) {
+            Log.e("RecipeFragment", "Error loading image", e)
+            binding.ivRecipeImage.setImageResource(R.drawable.bcg_recipes_list)
+            binding.ivRecipeImage.contentDescription = "Изображение блюда по умолчанию"
         }
     }
 
@@ -87,18 +97,24 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(ingredientsDivider)
         }
+        methodAdapter = MethodAdapter(recipe.method)
+        val methodStepsDivider = createMaterialDivider()
+
+        binding.rvMethod.apply {
+            adapter = methodAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(methodStepsDivider)
+        }
     }
 
-    private fun initUI() {
-        binding.tvRecipeTitle.text = recipe.title
-        try {
-            requireContext().assets.open(recipe.imageUrl).use { inputStream ->
-                val drawable = Drawable.createFromStream(inputStream, null)
-                binding.ivRecipeImage.setImageDrawable(drawable)
-            }
-        } catch (e: Exception) {
-            Log.e("RecipeFragment", "Error loading image", e)
-            binding.ivRecipeImage.setImageResource(android.R.color.darker_gray)
+    private fun createMaterialDivider(): MaterialDividerItemDecoration {
+        return MaterialDividerItemDecoration(
+            requireContext(),
+            MaterialDividerItemDecoration.HORIZONTAL
+        ).apply {
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.backgroundColor)
+            dividerThickness = resources.getDimensionPixelSize(R.dimen.header_title_font_size)
+            isLastItemDecorated = false
         }
     }
 

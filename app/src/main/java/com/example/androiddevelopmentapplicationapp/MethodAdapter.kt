@@ -12,7 +12,7 @@ class MethodAdapter(
 
     inner class MethodViewHolder(binding: ItemCookingStepBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            val stepDescriptionTextView: TextView = binding.tvStepDescription
+        val stepDescriptionTextView: TextView = binding.tvStepDescription
     }
 
     override fun onCreateViewHolder(
@@ -32,7 +32,6 @@ class MethodAdapter(
         position: Int
     ) {
         val step = methodSteps[position]
-
         holder.stepDescriptionTextView.text = step
     }
 
