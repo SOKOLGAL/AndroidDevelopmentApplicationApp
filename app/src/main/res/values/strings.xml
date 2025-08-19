@@ -16,5 +16,7 @@
     <string name="recipe_image_of_dish">Изображение блюда</string>
     <string name="recipe_ingredients">Ингредиенты</string>
     <string name="recipe_method_of_preparation">Способ приготовления</string>
+    <string name="recipe_image_default_dish">Изображение блюда по умолчанию</string>
+    <string name="recipe_foto_dish">Фотография блюда</string>
 
 </resources>

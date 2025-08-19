@@ -26,38 +26,24 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var methodAdapter: MethodAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentRecipeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         try {
             recipeId = arguments?.getInt(Constants.ARG_RECIPE_ID) ?: 0
             Log.e("RecipeFragment", "RecipeId: $recipeId")
-
             recipe = try {
+                initUI()
+                initRecyclers()
                 STUB.getRecipeById(recipeId)
             } catch (e: Exception) {
                 Log.e("RecipeFragment", "Error getting recipe", e)
                 null
             } ?: throw IllegalArgumentException("Recipe not found")
-
-            when {
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
-                    arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
-                }
-
-                else -> {
-                    @Suppress("DEPRECATION")
-                    arguments?.getParcelable(Constants.ARG_RECIPE)
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getParcelable(Constants.ARG_RECIPE)
             }
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Error processing recipe", e)
@@ -69,29 +55,35 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentRecipeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     private fun initUI() {
         binding.tvRecipeTitle.text = recipe.title
         try {
             requireContext().assets.open(recipe.imageUrl).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, null)
                 binding.ivRecipeImage.setImageDrawable(drawable)
-
-                // Обновление contentDescription
                 binding.ivRecipeImage.contentDescription = "Фотография блюда: ${recipe.title}"
             }
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Error loading image", e)
             binding.ivRecipeImage.setImageResource(R.drawable.bcg_recipes_list)
-            binding.ivRecipeImage.contentDescription = "Изображение блюда по умолчанию"
+            binding.ivRecipeImage.contentDescription = getString(
+                R.string.recipe_image_default_dish
+            )
         }
     }
 
     private fun initRecyclers() {
         ingredientsAdapter = IngredientsAdapter(recipe.ingredients)
-        val ingredientsDivider = MaterialDividerItemDecoration(
-            requireContext(),
-            MaterialDividerItemDecoration.VERTICAL
-        )
+        val ingredientsDivider = createMaterialDivider()
         binding.rvIngredients.apply {
             adapter = ingredientsAdapter
             layoutManager = LinearLayoutManager(requireContext())

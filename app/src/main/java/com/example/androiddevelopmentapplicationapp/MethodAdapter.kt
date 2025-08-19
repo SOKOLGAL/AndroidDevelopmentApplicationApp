@@ -1,17 +1,19 @@
 package com.example.androiddevelopmentapplicationapp
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidapplicationdevelopmentxml.databinding.ItemCookingStepBinding
+import com.example.androidapplicationdevelopmentxml.databinding.ItemMethodBinding
 
-class MethodAdapter(
-    private val methodSteps: List<String>
+class MethodAdapter( private val methodSteps: List<String>
 ) : RecyclerView.Adapter<MethodAdapter.MethodViewHolder>() {
 
-    inner class MethodViewHolder(binding: ItemCookingStepBinding) :
+    inner class MethodViewHolder(binding: ItemMethodBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        val stepNumberTextView: TextView = binding.tvStepDescription
         val stepDescriptionTextView: TextView = binding.tvStepDescription
     }
 
@@ -19,7 +21,7 @@ class MethodAdapter(
         parent: ViewGroup,
         viewType: Int
     ): MethodViewHolder {
-        val binding = ItemCookingStepBinding.inflate(
+        val binding = ItemMethodBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -27,11 +29,14 @@ class MethodAdapter(
         return MethodViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(
         holder: MethodViewHolder,
         position: Int
     ) {
         val step = methodSteps[position]
+
+        holder.stepNumberTextView.text = "${position + 1}."
         holder.stepDescriptionTextView.text = step
     }
 
