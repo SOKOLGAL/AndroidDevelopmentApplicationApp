@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="@dimen/half_main_padding_8">
+
+    <TextView
+        android:id="@+id/tvIngredientName"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        tools:text="Говядина" />
 
     <TextView
         android:id="@+id/tvIngredientQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/half_main_padding_8"
         tools:text="100 г"/>
 
-    <TextView
-        android:id="@+id/tvIngredientName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Говядина"/>
 </LinearLayout>

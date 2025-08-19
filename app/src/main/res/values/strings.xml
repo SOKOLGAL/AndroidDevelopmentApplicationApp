@@ -13,5 +13,8 @@
     <string name="tools_card_category">Бургеры</string>
     <string name="tools_card_description_category">Рецепты всех популярных видов бургеров</string>
     <string name="fragment_recipe">Фрагмент рецепта</string>
+    <string name="recipe_image_of_dish">Изображение блюда</string>
+    <string name="recipe_ingredients">Ингредиенты</string>
+    <string name="recipe_method_of_preparation">Способ приготовления</string>
 
 </resources>

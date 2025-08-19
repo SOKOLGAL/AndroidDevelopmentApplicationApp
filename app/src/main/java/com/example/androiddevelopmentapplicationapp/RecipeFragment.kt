@@ -57,19 +57,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                     arguments?.getParcelable(Constants.ARG_RECIPE)
                 }
             }
-
-            binding.tvRecipeTitle.text = recipe.title
-
-            try {
-                requireContext().assets.open(recipe.imageUrl).use { inputStream ->
-                    val drawable = Drawable.createFromStream(inputStream, null)
-                    binding.ivRecipeImage.setImageDrawable(drawable)
-                }
-            } catch (e: Exception) {
-                Log.e("RecipeFragment", "Error loading image", e)
-                binding.ivRecipeImage.setImageResource(android.R.color.darker_gray)
-            }
-
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Error processing recipe", e)
             Toast.makeText(
@@ -111,7 +98,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             }
         } catch (e: Exception) {
             Log.e("RecipeFragment", "Error loading image", e)
-            binding.ivRecipeImage.setImageResource(R.drawable.bcg_recipes_list)
+            binding.ivRecipeImage.setImageResource(android.R.color.darker_gray)
         }
     }
 
