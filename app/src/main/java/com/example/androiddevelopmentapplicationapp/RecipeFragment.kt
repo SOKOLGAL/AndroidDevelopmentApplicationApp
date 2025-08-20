@@ -19,7 +19,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private val binding
         get() = _binding ?: throw IllegalArgumentException("FragmentRecipeBinding is null!")
 
-    private var recipeId: Int = 0
     private lateinit var recipe: Recipe
 
     private lateinit var ingredientsAdapter: IngredientsAdapter
@@ -88,10 +87,10 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             requireContext(),
             MaterialDividerItemDecoration.VERTICAL
         ).apply {
-            dividerColor = ContextCompat.getColor(requireContext(), R.color.textVariantsColor)
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.divider_Color)
             dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_thickness_1)
-            dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_16)
-            dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_16)
+            dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
+            dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             isLastItemDecorated = false
         }
     }

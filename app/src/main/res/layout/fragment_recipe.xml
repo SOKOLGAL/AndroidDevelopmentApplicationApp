@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/main_padding_16"
             android:layout_marginTop="@dimen/half_main_padding_8"
+            android:paddingVertical="@dimen/card_elevation_4"
             android:background="@drawable/share_rounded_recipe"
             tools:listitem="@layout/item_ingredient" />
 
@@ -77,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/main_padding_16"
             android:layout_marginTop="@dimen/half_main_padding_8"
+            android:paddingVertical="@dimen/card_elevation_4"
             android:background="@drawable/share_rounded_recipe"
             tools:listitem="@layout/item_method" />
 

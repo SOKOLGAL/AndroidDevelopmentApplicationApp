@@ -12,8 +12,6 @@ class MethodAdapter( private val methodSteps: List<String>
 
     inner class MethodViewHolder(binding: ItemMethodBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        val stepNumberTextView: TextView = binding.tvStepDescription
         val stepDescriptionTextView: TextView = binding.tvStepDescription
     }
 
