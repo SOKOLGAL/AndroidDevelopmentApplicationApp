@@ -2,6 +2,7 @@ package com.example.androiddevelopmentapplicationapp
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,6 @@ import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
-import com.example.androiddevelopmentapplicationapp.Recipe
 import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
@@ -75,7 +75,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         try {
             val recipe = STUB.getRecipeById(recipeId)
             val bundle = Bundle().apply {
-                putInt(Constants.ARG_RECIPE_ID, recipeId)
+                putParcelable(Constants.ARG_RECIPE, recipe)
             }
             parentFragmentManager.commit {
                 replace<RecipeFragment>(R.id.mainContainer, args = bundle)

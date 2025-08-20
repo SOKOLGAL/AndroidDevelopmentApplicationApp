@@ -11,6 +11,7 @@
     <dimen name="fragment_of_layout">0dp</dimen>
     <dimen name="header_height_224">224dp</dimen>
     <dimen name="card_elevation_4">4dp</dimen>
+    <dimen name="divider_thickness_1">1dp</dimen>
     <dimen name="card_height_of_categories_130">130dp</dimen>
     <dimen name="card_height_of_recipes_100">100dp</dimen>
 

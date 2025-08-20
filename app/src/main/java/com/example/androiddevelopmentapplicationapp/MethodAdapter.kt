@@ -36,8 +36,7 @@ class MethodAdapter( private val methodSteps: List<String>
     ) {
         val step = methodSteps[position]
 
-        holder.stepNumberTextView.text = "${position + 1}."
-        holder.stepDescriptionTextView.text = step
+        holder.stepDescriptionTextView.text = "${position + 1}. $step"
     }
 
     override fun getItemCount(): Int = methodSteps.size

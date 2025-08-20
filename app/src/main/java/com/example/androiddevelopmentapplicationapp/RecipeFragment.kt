@@ -7,10 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -28,31 +27,16 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        try {
-            recipeId = arguments?.getInt(Constants.ARG_RECIPE_ID) ?: 0
-            Log.e("RecipeFragment", "RecipeId: $recipeId")
-            recipe = try {
-                initUI()
-                initRecyclers()
-                STUB.getRecipeById(recipeId)
-            } catch (e: Exception) {
-                Log.e("RecipeFragment", "Error getting recipe", e)
-                null
-            } ?: throw IllegalArgumentException("Recipe not found")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                arguments?.getParcelable(Constants.ARG_RECIPE)
-            }
-        } catch (e: Exception) {
-            Log.e("RecipeFragment", "Error processing recipe", e)
-            Toast.makeText(
-                requireContext(),
-                "Не удалось загрузить рецепт: ${e.localizedMessage}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+
+        recipe = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            arguments?.getParcelable(Constants.ARG_RECIPE)
+        } ?: throw IllegalArgumentException("Recipe must be provided")
+
+        initUI()
+        initRecyclers()
     }
 
     override fun onCreateView(
@@ -102,10 +86,12 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private fun createMaterialDivider(): MaterialDividerItemDecoration {
         return MaterialDividerItemDecoration(
             requireContext(),
-            MaterialDividerItemDecoration.HORIZONTAL
+            MaterialDividerItemDecoration.VERTICAL
         ).apply {
-            dividerColor = ContextCompat.getColor(requireContext(), R.color.backgroundColor)
-            dividerThickness = resources.getDimensionPixelSize(R.dimen.header_title_font_size)
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.textVariantsColor)
+            dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_thickness_1)
+            dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_16)
+            dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_16)
             isLastItemDecorated = false
         }
     }
