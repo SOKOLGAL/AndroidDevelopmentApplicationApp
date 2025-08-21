@@ -1,12 +1,10 @@
 package com.example.androiddevelopmentapplicationapp
 
-import android.R.attr.progress
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.graphics.drawable.Drawable
-import android.widget.SeekBar
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -93,27 +91,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         }
     }
 
-    private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
-        binding.sbPortions.apply {
-            max = 4
-            progress = 2
 
-            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(
-                    seekBar: SeekBar?,
-                    progress: Int,
-                    fromUser: Boolean
-                ) {
-                    val portions = progress + 1
-                    binding.tvNumberOfServings.text = portions.toString()
-                    ingredientsAdapter.updateIngredients(progress)
-                }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-            })
-        }
-    }
 
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)

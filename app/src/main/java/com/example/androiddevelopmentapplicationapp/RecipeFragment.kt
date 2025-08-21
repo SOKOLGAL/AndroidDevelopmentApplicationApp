@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import android.R.attr.progress
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -92,6 +94,27 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             isLastItemDecorated = false
+        }
+    }
+    private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
+        binding.sbPortions.apply {
+            max = 4
+            android.R.attr.progress = 2
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    val portions = progress + 1
+                    binding.tvNumberOfServings.text = portions.toString()
+                    ingredientsAdapter.updateIngredients(progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
         }
     }
 
