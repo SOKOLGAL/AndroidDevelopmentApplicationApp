@@ -61,7 +61,7 @@ class IngredientsAdapter(
     fun updateIngredients(progress: Int) {
         quantity = progress + 1
         val updatedIngredients = baseIngredients.map { ingredient ->
-            ingredient.copy(ingredient.quantity * (quantity.toFloat() / 3))
+            ingredient.copy((ingredient.quantity * (quantity.toFloat() / 3)).toInt())
         }
         ingredients.clear()
         ingredients.addAll(updatedIngredients)
