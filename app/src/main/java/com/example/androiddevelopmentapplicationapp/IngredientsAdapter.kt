@@ -1,43 +1,78 @@
 package com.example.androiddevelopmentapplicationapp
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemIngredientBinding
 
 class IngredientsAdapter(
-    private val ingredients: List<Ingredient>
+    private val baseIngredients: List<Ingredient>
 ) : RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder>() {
-    inner class IngredientViewHolder(binding: ItemIngredientBinding) :
-        RecyclerView.ViewHolder(binding.root) {
 
-        val quantityTextView: TextView = binding.tvIngredientQuantity
-        val nameTextView: TextView = binding.tvIngredientName
+    private var quantity: Int = 3
+    private val ingredients = mutableListOf<Ingredient>()
+
+    init {
+        ingredients.addAll(baseIngredients)
+    }
+
+    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemIngredientBinding.bind(itemView)
+
+        @SuppressLint("DefaultLocale", "SetTextI18n")
+        fun bind(ingredient: Ingredient) {
+            binding.tvIngredientName.text = ingredient.description
+
+            val calculatedAmount = ingredient.amount * (quantity.toFloat() / 3)
+
+            val formattedAmount = if (calculatedAmount.isWholeNumber()) {
+                calculatedAmount.toInt().toString()
+            } else {
+                String.format("%.1f", calculatedAmount)
+            }
+
+            binding.tvIngredientName.text = "$formattedAmount ${ingredient.unitOfMeasure}"
+        }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): IngredientViewHolder {
-        val binding = ItemIngredientBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return IngredientViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(
+                com.example.androidapplicationdevelopmentxml.R.layout.item_ingredient,
+                parent,
+                false
+            )
+        return IngredientViewHolder(view)
     }
 
     override fun onBindViewHolder(
         holder: IngredientViewHolder,
         position: Int
     ) {
-        val ingredient = ingredients[position]
-        val quantityText = "${ingredient.quantity} ${ingredient.unitOfMeasure}"
+        holder.bind(ingredients[position])
+    }
 
-        holder.quantityTextView.text = quantityText
-        holder.nameTextView.text = ingredient.description
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateIngredients(progress: Int) {
+        quantity = progress + 1
+        val updatedIngredients = baseIngredients.map { ingredient ->
+            ingredient.copy(
+                amount = ingredient.amount * (quantity.toFloat() / 3)
+            )
+        }
+        ingredients.clear()
+        ingredients.addAll(updatedIngredients)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = ingredients.size
+
+    private fun Float.isWholeNumber(): Boolean {
+        return this % 1f == 0f
+    }
 }

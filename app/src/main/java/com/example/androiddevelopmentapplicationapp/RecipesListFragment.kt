@@ -1,17 +1,18 @@
 package com.example.androiddevelopmentapplicationapp
 
-import android.graphics.drawable.Drawable
+import android.R.attr.progress
 import android.os.Bundle
-import android.text.TextUtils.replace
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import android.graphics.drawable.Drawable
+import android.widget.SeekBar
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
 import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
@@ -48,6 +49,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
         initRecycler()
         initHeader()
+        initPortionsSeekBar()
 
         val recipes = getRecipesByCategoryId(categoryId)
         val adapter = RecipesListAdapter(recipes) { recipeId ->
@@ -91,6 +93,28 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         }
     }
 
+    private fun initPortionsSeekBar() {
+        binding.sbPortions.apply {
+            max = 4
+            progress = 2
+
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    val portions = progress + 1
+                    binding.tvNumberOfServings.text = portions.toString()
+                    ingredientsAdapter.updateIngredients(progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
+        }
+    }
+
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)
 
@@ -98,9 +122,18 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
             openRecipeByRecipeId(recipeId)
         }
 
-        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvRecipes.adapter = recipesAdapter
+        binding.rvRecipes.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = recipesAdapter
+        }
 
+        val ingredientsAdapter = IngredientsAdapter(recipe.ingredients)
+        binding.rvIngredients.apply {
+            adapter = ingredientsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        initPortionsSeekBar(ingredientsAdapter)
     }
 
     override fun onDestroyView() {
