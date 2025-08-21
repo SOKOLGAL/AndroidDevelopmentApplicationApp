@@ -267,7 +267,7 @@ object STUB {
 
     fun getRecipeById(recipeId: Int): Recipe {
         return burgerRecipes.find { it.id == recipeId }
-            ?: burgerRecipes.first()
+            ?: throw IllegalArgumentException("Рецепт с ID $recipeId не найден")
     }
 
     fun getRecipesByCategoryId(categoryId: Int?): List<Recipe> {

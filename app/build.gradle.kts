@@ -51,4 +51,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.material.v150)
+    implementation(libs.material.v1100)
+    implementation(libs.androidx.core.ktx.v1101)
 }

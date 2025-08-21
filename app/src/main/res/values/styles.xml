@@ -40,4 +40,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="MethodOfPreparationText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/size_text_card</item>
+        <item name="android:textColor">@color/methodOfPreparationColor</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>
