@@ -87,7 +87,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             requireContext(),
             MaterialDividerItemDecoration.VERTICAL
         ).apply {
-            dividerColor = ContextCompat.getColor(requireContext(), R.color.divider_Color)
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.dividerColor)
             dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_thickness_1)
             dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
