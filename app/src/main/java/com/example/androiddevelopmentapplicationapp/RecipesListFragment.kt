@@ -93,7 +93,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         }
     }
 
-    private fun initPortionsSeekBar() {
+    private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
         binding.sbPortions.apply {
             max = 4
             progress = 2
