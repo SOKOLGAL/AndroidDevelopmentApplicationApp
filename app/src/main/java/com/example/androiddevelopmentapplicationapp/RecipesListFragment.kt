@@ -16,17 +16,14 @@ import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesL
 import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
-
     private var categoryId: Int? = null
     private var categoryName: String? = null
     private var categoryImageUrl: String? = null
-
     private var _binding: FragmentRecipesListBinding? = null
     private val binding
         get() = _binding ?: throw IllegalArgumentException("ActivityMainBinding is null!")
 
     private lateinit var recipesAdapter: RecipesListAdapter
-    private lateinit var recipe: Recipe
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +36,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         arguments?.let { args ->
             categoryId = args.getInt(Constants.ARG_CATEGORY_ID)
             categoryName = args.getString(Constants.ARG_CATEGORY_NAME) ?: ""
@@ -48,20 +44,16 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
         initRecycler()
         initHeader()
-        initPortionsSeekBar()
-
         val recipes = getRecipesByCategoryId(categoryId)
         val adapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
-
         binding.rvRecipes.adapter = adapter
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun initHeader() {
         binding.tvCategoryName.text = categoryName
-
         try {
             requireContext().assets.open(categoryImageUrl.toString()).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, null)
@@ -94,25 +86,12 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)
-
         recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
-
-        binding.rvRecipes.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = recipesAdapter
-        }
-        recipe.ingredients?.let { ingredients ->
-            val ingredientsAdapter = IngredientsAdapter(ingredients)
-            binding.rvIngredients.apply {
-                adapter = ingredientsAdapter
-                layoutManager = LinearLayoutManager(requireContext())
-            }
-            initPortionsSeekBar(ingredientsAdapter)
-        }
+        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecipes.adapter = recipesAdapter
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

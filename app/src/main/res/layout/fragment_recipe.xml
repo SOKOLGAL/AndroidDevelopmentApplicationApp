@@ -63,14 +63,14 @@
 
             <TextView
                 android:id="@+id/tvPortions"
-                style="@style/Portions14"
+                style="@style/Portions16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Порции" />
 
             <TextView
                 android:id="@+id/tvNumberOfServings"
-                style="@style/Portions14"
+                style="@style/Portions16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/half_main_padding_8"
@@ -83,8 +83,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/main_padding_16"
             android:layout_marginTop="@dimen/half_main_padding_8"
-            android:max="4"
-            android:progress="2"
+            android:max="5"
+            android:min="1"
+            android:progress="3"
             style="@style/Widget.AppCompat.SeekBar" />
 
         <androidx.recyclerview.widget.RecyclerView

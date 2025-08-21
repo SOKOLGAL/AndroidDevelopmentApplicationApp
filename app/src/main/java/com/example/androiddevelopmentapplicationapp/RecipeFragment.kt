@@ -21,7 +21,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         get() = _binding ?: throw IllegalArgumentException("FragmentRecipeBinding is null!")
 
     private lateinit var recipe: Recipe
-
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var methodAdapter: MethodAdapter
 
@@ -95,11 +94,9 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             isLastItemDecorated = false
         }
     }
+
     private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
         binding.sbPortions.apply {
-            max = 4
-            progress = 2
-
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
