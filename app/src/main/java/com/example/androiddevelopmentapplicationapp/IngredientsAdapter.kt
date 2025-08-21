@@ -25,7 +25,7 @@ class IngredientsAdapter(
         fun bind(ingredient: Ingredient) {
             binding.tvIngredientName.text = ingredient.description
 
-            val calculatedAmount = ingredient.amount * (quantity.toFloat() / 3)
+            val calculatedAmount = ingredient.quantity * (quantity.toFloat() / 3)
 
             val formattedAmount = if (calculatedAmount.isWholeNumber()) {
                 calculatedAmount.toInt().toString()
@@ -61,9 +61,7 @@ class IngredientsAdapter(
     fun updateIngredients(progress: Int) {
         quantity = progress + 1
         val updatedIngredients = baseIngredients.map { ingredient ->
-            ingredient.copy(
-                amount = ingredient.amount * (quantity.toFloat() / 3)
-            )
+            ingredient.copy(ingredient.quantity * (quantity.toFloat() / 3))
         }
         ingredients.clear()
         ingredients.addAll(updatedIngredients)
