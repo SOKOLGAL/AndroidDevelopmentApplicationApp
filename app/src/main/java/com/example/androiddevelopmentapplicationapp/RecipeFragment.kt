@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import android.R.attr.progress
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -99,7 +98,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
         binding.sbPortions.apply {
             max = 4
-            android.R.attr.progress = 2
+            progress = 2
 
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(

@@ -26,6 +26,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         get() = _binding ?: throw IllegalArgumentException("ActivityMainBinding is null!")
 
     private lateinit var recipesAdapter: RecipesListAdapter
+    private lateinit var recipe: Recipe
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -91,8 +92,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         }
     }
 
-
-
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)
 
@@ -104,15 +103,16 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = recipesAdapter
         }
-
-        val ingredientsAdapter = IngredientsAdapter(recipe.ingredients)
-        binding.rvIngredients.apply {
-            adapter = ingredientsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+        recipe.ingredients?.let { ingredients ->
+            val ingredientsAdapter = IngredientsAdapter(ingredients)
+            binding.rvIngredients.apply {
+                adapter = ingredientsAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+            }
+            initPortionsSeekBar(ingredientsAdapter)
         }
-
-        initPortionsSeekBar(ingredientsAdapter)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
