@@ -72,6 +72,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(ingredientsDivider)
         }
+        initPortionsSeekBar()
         methodAdapter = MethodAdapter(recipe.method)
         val methodStepsDivider = createMaterialDivider()
 
@@ -95,7 +96,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         }
     }
 
-    private fun initPortionsSeekBar(ingredientsAdapter: IngredientsAdapter) {
+    private fun initPortionsSeekBar() {
         binding.sbPortions.apply {
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -111,6 +112,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             })
+
         }
     }
 
