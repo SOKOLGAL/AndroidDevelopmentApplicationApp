@@ -1,7 +1,6 @@
 package com.example.androiddevelopmentapplicationapp
 
 object STUB {
-
     private val categories = listOf(
         Category(
             id = 0,
@@ -42,7 +41,6 @@ object STUB {
     )
 
     fun getCategories(): List<Category> = categories
-
     private val burgerRecipes = listOf(
         Recipe(
             id = 0,

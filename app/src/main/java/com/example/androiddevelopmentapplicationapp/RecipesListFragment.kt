@@ -1,27 +1,24 @@
 package com.example.androiddevelopmentapplicationapp
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.TextUtils.replace
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
 import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
-
     private var categoryId: Int? = null
     private var categoryName: String? = null
     private var categoryImageUrl: String? = null
-
     private var _binding: FragmentRecipesListBinding? = null
     private val binding
         get() = _binding ?: throw IllegalArgumentException("ActivityMainBinding is null!")
@@ -39,7 +36,6 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         arguments?.let { args ->
             categoryId = args.getInt(Constants.ARG_CATEGORY_ID)
             categoryName = args.getString(Constants.ARG_CATEGORY_NAME) ?: ""
@@ -48,19 +44,16 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
         initRecycler()
         initHeader()
-
         val recipes = getRecipesByCategoryId(categoryId)
         val adapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
-
         binding.rvRecipes.adapter = adapter
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun initHeader() {
         binding.tvCategoryName.text = categoryName
-
         try {
             requireContext().assets.open(categoryImageUrl.toString()).use { inputStream ->
                 val drawable = Drawable.createFromStream(inputStream, null)
@@ -93,14 +86,11 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)
-
         recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
-
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecipes.adapter = recipesAdapter
-
     }
 
     override fun onDestroyView() {

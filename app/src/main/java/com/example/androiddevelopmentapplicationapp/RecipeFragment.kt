@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         get() = _binding ?: throw IllegalArgumentException("FragmentRecipeBinding is null!")
 
     private lateinit var recipe: Recipe
-
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var methodAdapter: MethodAdapter
 
@@ -36,6 +36,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
         initUI()
         initRecyclers()
+        initPortionsSeekBar()
     }
 
     override fun onCreateView(
@@ -87,11 +88,31 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             requireContext(),
             MaterialDividerItemDecoration.VERTICAL
         ).apply {
-            dividerColor = ContextCompat.getColor(requireContext(), R.color.divider_Color)
+            dividerColor = ContextCompat.getColor(requireContext(), R.color.dividerColor)
             dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_thickness_1)
             dividerInsetStart = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             dividerInsetEnd = resources.getDimensionPixelSize(R.dimen.main_padding_indent_12)
             isLastItemDecorated = false
+        }
+    }
+
+    private fun initPortionsSeekBar() {
+        binding.sbPortions.apply {
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    val portions = progress
+                    binding.tvNumberOfServings.text = portions.toString()
+                    ingredientsAdapter.updateIngredients(progress)
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
+
         }
     }
 

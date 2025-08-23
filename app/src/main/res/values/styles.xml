@@ -47,4 +47,10 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="Portions16" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/methodOfPreparationColor</item>
+    </style>
+
 </resources>
