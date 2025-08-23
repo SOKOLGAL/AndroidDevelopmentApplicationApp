@@ -81,12 +81,12 @@
             android:id="@+id/sbPortions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/styleSeekBar"
             android:layout_marginHorizontal="@dimen/main_padding_16"
             android:layout_marginTop="@dimen/half_main_padding_8"
             android:max="5"
             android:min="1"
-            android:progress="3"
-            style="@style/Widget.AppCompat.SeekBar" />
+            android:progress="3" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIngredients"
