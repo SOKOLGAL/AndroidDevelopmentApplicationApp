@@ -6,10 +6,14 @@
     <dimen name="main_padding_indent_10">10dp</dimen>
     <dimen name="main_distance_between_buttons">2dp</dimen>
     <dimen name="corner_radius_8">8dp</dimen>
+    <dimen name="corner_radius_4">4dp</dimen>
+    <dimen name="corner_radius_2">2dp</dimen>
     <dimen name="button_width_162">162dp</dimen>
     <dimen name="height_fragment_272">272dp</dimen>
     <dimen name="fragment_of_layout">0dp</dimen>
     <dimen name="header_height_224">224dp</dimen>
+    <dimen name="seek_bar_height_4">4dp</dimen>
+    <dimen name="seek_bar_height_thumb_30">30dp</dimen>
     <dimen name="card_elevation_4">4dp</dimen>
     <dimen name="divider_thickness_1">1dp</dimen>
     <dimen name="card_height_of_categories_130">130dp</dimen>

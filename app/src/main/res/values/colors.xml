@@ -11,5 +11,7 @@
     <color name="headerTitleColor">#5F3678</color>
     <color name="methodOfPreparationColor">#666666</color>
     <color name="dividerColor">#F5F5F5</color>
+    <color name="seekBarProgressColor">#A1A9F9</color>
+    <color name="seekBarThumbColor">#525DC0</color>
 
 </resources>
