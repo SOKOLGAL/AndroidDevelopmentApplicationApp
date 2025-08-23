@@ -23,7 +23,7 @@ class IngredientsAdapter(
             binding.tvIngredientName.text = ingredient.description
 
             val calculatedAmount = BigDecimal(ingredient.quantity)
-                .multiply(BigDecimal.valueOf(quantity.toLong()))
+                .multiply( quantity.toBigDecimal())
 
             val formattedAmount = calculatedAmount
                 .setScale(1, RoundingMode.HALF_UP)
