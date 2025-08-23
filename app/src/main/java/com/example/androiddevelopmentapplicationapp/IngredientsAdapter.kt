@@ -10,7 +10,7 @@ import java.math.RoundingMode
 import java.math.BigDecimal
 
 class IngredientsAdapter(
-    private val baseIngredients: List<Ingredient>
+    private val ingredients: List<Ingredient>
 ) : RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder>() {
 
     private var quantity: Int = 3
@@ -30,8 +30,7 @@ class IngredientsAdapter(
                 .stripTrailingZeros()
                 .toPlainString()
 
-            binding.tvIngredientName.text = formattedAmount
-            binding.tvIngredientQuantity.text = ingredient.unitOfMeasure
+            binding.tvIngredientQuantity.text = "$formattedAmount ${ingredient.unitOfMeasure}"
         }
     }
 
@@ -52,7 +51,7 @@ class IngredientsAdapter(
             holder: IngredientViewHolder,
             position: Int
         ) {
-            holder.bind(baseIngredients[position])
+            holder.bind(ingredients[position])
         }
 
         @SuppressLint("NotifyDataSetChanged")
@@ -61,5 +60,5 @@ class IngredientsAdapter(
             notifyDataSetChanged()
         }
 
-        override fun getItemCount(): Int = baseIngredients.size
+        override fun getItemCount(): Int = ingredients.size
     }

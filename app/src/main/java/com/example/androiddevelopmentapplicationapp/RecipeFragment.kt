@@ -36,6 +36,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
         initUI()
         initRecyclers()
+        initPortionsSeekBar()
     }
 
     override fun onCreateView(
@@ -72,8 +73,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(ingredientsDivider)
         }
-        initUI()
-        initPortionsSeekBar()
         methodAdapter = MethodAdapter(recipe.method)
         val methodStepsDivider = createMaterialDivider()
 
