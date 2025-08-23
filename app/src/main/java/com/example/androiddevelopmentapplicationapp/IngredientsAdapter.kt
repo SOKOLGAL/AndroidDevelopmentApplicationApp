@@ -24,14 +24,14 @@ class IngredientsAdapter(
 
             val calculatedAmount = BigDecimal(ingredient.quantity)
                 .multiply(BigDecimal.valueOf(quantity.toLong()))
-                .divide(BigDecimal.valueOf(3))
 
             val formattedAmount = calculatedAmount
                 .setScale(1, RoundingMode.HALF_UP)
                 .stripTrailingZeros()
                 .toPlainString()
 
-            binding.tvIngredientName.text = "$formattedAmount ${ingredient.unitOfMeasure}"
+            binding.tvIngredientName.text = formattedAmount
+            binding.tvIngredientQuantity.text = ingredient.unitOfMeasure
         }
     }
 
@@ -62,8 +62,4 @@ class IngredientsAdapter(
         }
 
         override fun getItemCount(): Int = baseIngredients.size
-
-        private fun BigDecimal.isWhole(): Boolean {
-            return this.remainder(BigDecimal.ONE) == BigDecimal.ZERO
-        }
     }

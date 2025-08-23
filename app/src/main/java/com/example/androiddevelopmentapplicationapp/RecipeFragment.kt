@@ -72,6 +72,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(ingredientsDivider)
         }
+        initUI()
         initPortionsSeekBar()
         methodAdapter = MethodAdapter(recipe.method)
         val methodStepsDivider = createMaterialDivider()
@@ -104,7 +105,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    val portions = progress + 1
+                    val portions = progress
                     binding.tvNumberOfServings.text = portions.toString()
                     ingredientsAdapter.updateIngredients(progress)
                 }
