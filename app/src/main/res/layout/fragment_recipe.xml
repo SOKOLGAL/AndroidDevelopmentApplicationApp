@@ -30,7 +30,25 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/bcg_recipes_list" />
+
+            <ImageButton
+                android:id="@+id/btn_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:clickable="true"
+                android:contentDescription="@string/cd_button_favorites"
+                android:focusable="true"
+                android:layout_marginTop="@dimen/main_padding_16"
+                android:layout_marginEnd="@dimen/main_padding_16"
+                android:src="@drawable/ic_heart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,RtlSymmetry"
+                tools:src="@drawable/ic_heart" />
 
             <TextView
                 android:id="@+id/tvRecipeTitle"
