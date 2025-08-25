@@ -73,7 +73,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             isFavorite = !isFavorite
 
             val iconResource = if (isFavorite) {
-                R.drawable.ic_heart_empty
+                R.drawable.ic_heart_empty_40
             } else {
                 R.drawable.ic_heart
             }

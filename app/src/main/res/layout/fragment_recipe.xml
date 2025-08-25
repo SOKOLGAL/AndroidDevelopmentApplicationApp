@@ -31,8 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/bcg_recipes_list"/>
-
+                tools:src="@drawable/bcg_recipes_list" />
 
             <ImageButton
                 android:id="@+id/btn_like"
@@ -43,14 +42,12 @@
                 android:clickable="true"
                 android:contentDescription="@string/cd_button_favorites"
                 android:focusable="true"
-                android:paddingTop="@dimen/main_padding_16"
-                android:paddingEnd="@dimen/main_padding_16"
+                android:layout_marginTop="@dimen/main_padding_16"
+                android:layout_marginEnd="@dimen/main_padding_16"
                 android:src="@drawable/ic_heart"
-                tools:ignore="MissingConstraints,RtlSymmetry"
-                tools:layout_editor_absoluteX="355dp"
-                tools:layout_editor_absoluteY="16dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,RtlSymmetry"
                 tools:src="@drawable/ic_heart" />
 
             <TextView
