@@ -87,7 +87,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         )
 
         return HashSet(
-            sharedPrefs?.getStringSet(PREFS_FAVORITES, HashSet<String>()) ?: mutableSetOf()
+            sharedPrefs?.getStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet<String>()) ?: mutableSetOf()
         )
     }
 
