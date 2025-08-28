@@ -79,11 +79,10 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             Context.MODE_PRIVATE
         )
         sharedPrefs.edit().apply {
-            putStringSet(Constants.KEY_FAVORITE_RECIPES, favoriteRecipeIds)
+            putStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet(favoriteRecipeIds))
             apply()
         }
     }
-
 
     private fun getFavorites(): MutableSet<String> {
         val sharedPrefs = requireContext().getSharedPreferences(
@@ -91,15 +90,14 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             Context.MODE_PRIVATE
         )
 
-        return sharedPrefs.getStringSet(
-            KEY_FAVORITE_RECIPES,
-            emptySet()
-        )?.let { HashSet(it) } ?: HashSet()
+        return HashSet(
+            sharedPrefs?.getStringSet(PREFS_FAVORITES, HashSet<String>()) ?: mutableSetOf()
+        )
     }
 
     private fun initFavoriteButton() {
         val favorites = getFavorites()
-        val isFavorite = favorites.contains(recipe.id)
+        val isFavorite = favorites.contains(recipe.id.toString())
 
         updateFavoriteButtonState(isFavorite)
 
@@ -107,22 +105,22 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
             val currentFavorites = getFavorites()
 
-            if (currentFavorites.contains(recipe.id)) {
-                currentFavorites.remove(recipe.id)
+            if (currentFavorites.contains(recipe.id.toString())) {
+                currentFavorites.remove(recipe.id.toString())
             } else {
-                currentFavorites.add(recipe.id)
+                currentFavorites.add(recipe.id.toString())
             }
 
             saveFavorites(currentFavorites)
 
-            updateFavoriteButtonState(currentFavorites.contains(recipe.id))
+            updateFavoriteButtonState(currentFavorites.contains(recipe.id.toString()))
         }
     }
 
     private fun updateFavoriteButtonState(isFavorite: Boolean) {
         binding.btnLike.setImageResource(
-            if (isFavorite) R.drawable.ic_heart_empty_40
-            else R.drawable.ic_heart
+            if (isFavorite) R.drawable.ic_heart
+            else R.drawable.ic_heart_empty_40
         )
     }
 
