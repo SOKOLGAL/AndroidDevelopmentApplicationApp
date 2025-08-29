@@ -1,5 +1,6 @@
 package com.example.androiddevelopmentapplicationapp
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -7,13 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipeBinding
+import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
@@ -24,8 +25,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private lateinit var recipe: Recipe
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var methodAdapter: MethodAdapter
-    private lateinit var favoriteButton: ImageButton
-    private var isFavorite = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,20 +65,59 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                 R.string.recipe_image_default_dish
             )
         }
+        initFavoriteButton()
 
-        view?.let { favoriteButton = it.findViewById(R.id.btn_like) }
+    }
 
-        favoriteButton.setOnClickListener {
-            isFavorite = !isFavorite
+    private fun saveFavorites(favoriteRecipeIds: Set<String>) {
+        val sharedPrefs = requireContext().getSharedPreferences(
+            Constants.PREFS_FAVORITES,
+            Context.MODE_PRIVATE
+        )
+        sharedPrefs.edit().apply {
+            putStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet(favoriteRecipeIds))
+            apply()
+        }
+    }
 
-            val iconResource = if (isFavorite) {
-                R.drawable.ic_heart_empty_40
+    private fun getFavorites(): MutableSet<String> {
+        val sharedPrefs = requireContext().getSharedPreferences(
+            PREFS_FAVORITES,
+            Context.MODE_PRIVATE
+        )
+
+        return HashSet(
+            sharedPrefs?.getStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet<String>()) ?: mutableSetOf()
+        )
+    }
+
+    private fun initFavoriteButton() {
+        val favorites = getFavorites()
+        val isFavorite = favorites.contains(recipe.id.toString())
+
+        updateFavoriteButtonState(isFavorite)
+
+        binding.btnLike.setOnClickListener {
+
+            val currentFavorites = getFavorites()
+
+            if (currentFavorites.contains(recipe.id.toString())) {
+                currentFavorites.remove(recipe.id.toString())
             } else {
-                R.drawable.ic_heart
+                currentFavorites.add(recipe.id.toString())
             }
 
-            favoriteButton.setImageResource(iconResource)
+            saveFavorites(currentFavorites)
+
+            updateFavoriteButtonState(currentFavorites.contains(recipe.id.toString()))
         }
+    }
+
+    private fun updateFavoriteButtonState(isFavorite: Boolean) {
+        binding.btnLike.setImageResource(
+            if (isFavorite) R.drawable.ic_heart
+            else R.drawable.ic_heart_empty_40
+        )
     }
 
     private fun initRecyclers() {
