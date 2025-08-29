@@ -21,25 +21,26 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     private var _binding: FragmentRecipeBinding? = null
     private val binding
         get() = _binding ?: throw IllegalArgumentException("FragmentRecipeBinding is null!")
-
     private lateinit var recipe: Recipe
     private lateinit var ingredientsAdapter: IngredientsAdapter
     private lateinit var methodAdapter: MethodAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        super.onViewCreated(
+            view,
+            savedInstanceState
+        )
         recipe = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getParcelable(Constants.ARG_RECIPE, Recipe::class.java)
         } else {
             @Suppress("DEPRECATION")
             arguments?.getParcelable(Constants.ARG_RECIPE)
         } ?: throw IllegalArgumentException("Recipe must be provided")
-
         initUI()
         initRecyclers()
         initPortionsSeekBar()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +88,8 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         )
 
         return HashSet(
-            sharedPrefs?.getStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet<String>()) ?: mutableSetOf()
+            sharedPrefs?.getStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet<String>())
+                ?: mutableSetOf()
         )
     }
 
@@ -130,7 +132,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         }
         methodAdapter = MethodAdapter(recipe.method)
         val methodStepsDivider = createMaterialDivider()
-
         binding.rvMethod.apply {
             adapter = methodAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -167,7 +168,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             })
-
         }
     }
 

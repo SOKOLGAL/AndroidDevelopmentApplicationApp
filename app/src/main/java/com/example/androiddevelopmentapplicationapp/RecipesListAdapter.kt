@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemRecipeBinding
 
 class RecipesListAdapter(
-    private val recipes: List<Recipe>,
     private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
