@@ -1,5 +1,6 @@
 package com.example.androiddevelopmentapplicationapp
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentFavoritesBinding
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null
@@ -29,13 +31,13 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+    ): View {
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     private fun initRecycler() {
-        recipesListAdapter = RecipesListAdapter() { recipe ->
-
+        recipesListAdapter = RecipesListAdapter(recipes) { recipe ->
             openRecipeByRecipeId(recipe.id)
         }
 
@@ -47,10 +49,21 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private fun loadFavoriteRecipes() {
         val favoriteRecipeIds = getFavorites()
-        val favoriteRecipeIdsAsStrings = favoriteRecipeIds.map { it.toString() }.toSet()
+        val favoriteRecipeIdsAsStrings = favoriteRecipeIds.map { it }.toSet()
         val favoriteRecipes = STUB.getRecipesByIds(favoriteRecipeIdsAsStrings)
 
-        recipesListAdapter.submitList(favoriteRecipes)
+        recipesListAdapter = RecipesListAdapter(
+            recipes = favoriteRecipes,
+            onItemClick = { recipe ->
+                openRecipeByRecipeId(recipe.id)
+            }
+        )
+
+        binding.rvFavorites.apply {
+            adapter = recipesListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
         updateFavoritesView(favoriteRecipes)
     }
 
@@ -63,17 +76,33 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         )
 
         binding.rvFavorites.isVisible = favoriteRecipes.isNotEmpty()
-        binding.rvFavorites.isVisible = favoriteRecipes.isEmpty()
+        binding.tvEmptyFavorites.isVisible = favoriteRecipes.isEmpty()
     }
 
-    private fun getFavorites(): Set<Int> {
-        return RecipeFragment.getFavorites(requireContext())
+    private fun getFavorites(): MutableSet<String> {
+        val sharedPrefs = requireContext().getSharedPreferences(
+            PREFS_FAVORITES,
+            Context.MODE_PRIVATE
+        )
+
+        return HashSet(
+            sharedPrefs?.getStringSet(Constants.KEY_FAVORITE_RECIPES, HashSet<String>())
+                ?: mutableSetOf()
+        )
     }
 
     private fun openRecipeByRecipeId(recipeId: Int) {
-        findNavController().navigate(
-            FavoritesFragmentDirections.actionFavoritesToRecipeDetails(recipeId)
-        )
+        val recipeFragment = RecipeFragment().apply {
+            arguments = Bundle().apply {
+                putInt(Constants.ARG_RECIPE_ID, recipeId)
+            }
+        }
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.mainContainer, recipeFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {

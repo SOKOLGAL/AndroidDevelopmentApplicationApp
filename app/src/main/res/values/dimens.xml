@@ -24,6 +24,7 @@
     <dimen name="header_title_font_size">20sp</dimen>
     <dimen name="size_text_of_categories">18sp</dimen>
     <dimen name="size_text_card">14sp</dimen>
+    <dimen name="size_text_favorites">16sp</dimen>
     <dimen name="size_text_description_card">12sp</dimen>
 
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/categories_fragment_root"
     android:layout_width="match_parent"
@@ -30,10 +31,12 @@
             android:layout_margin="@dimen/main_padding_16"
             android:background="@drawable/share_rounded_screen_header"
             android:padding="@dimen/main_padding_indent_10"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="33dp"
-            tools:layout_editor_absoluteY="161dp"
-            tools:text="Избранное" />
+            android:text="@string/button_favorites"
+            app:layout_constraintBottom_toBottomOf="@+id/ivFavoritesImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,8 +46,26 @@
         android:layout_margin="@dimen/half_main_padding_8"
         android:layout_weight="1"
         tools:LinearLayoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:itemCount="8"
-        tools:listitem="@layout/item_recipe"
-        tools:spanCount="1"
-        tools:text="Вы еще не добавили ни одного рецепта в Избранное"/>
+        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEmptyFavorites"
+        style="@style/NoFavoritesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/main_padding_16"
+        android:background="@drawable/share_rounded_screen_header"
+        android:padding="@dimen/main_padding_indent_10"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="161dp"
+        tools:text="Вы еще не добавили ни одного рецепта в Избранное"
+        tools:visibility="visible" />
+
 </LinearLayout>

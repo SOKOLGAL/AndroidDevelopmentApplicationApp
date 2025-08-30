@@ -45,7 +45,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
         initRecycler()
         initHeader()
         val recipes = getRecipesByCategoryId(categoryId)
-        val adapter = RecipesListAdapter() { recipeId ->
+        val adapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
         binding.rvRecipes.adapter = adapter
@@ -86,7 +86,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
     private fun initRecycler() {
         val recipes = getRecipesByCategoryId(categoryId)
-        recipesAdapter = RecipesListAdapter() { recipeId ->
+        recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
