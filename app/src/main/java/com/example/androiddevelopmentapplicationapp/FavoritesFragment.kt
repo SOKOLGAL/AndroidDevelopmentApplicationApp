@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentFavoritesBinding
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
 
@@ -24,7 +25,6 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         binding.tvFavoritesTitle.text = getString(R.string.button_favorites)
 
         initRecycler()
-        loadFavoriteRecipes()
     }
 
     override fun onCreateView(
@@ -37,19 +37,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     }
 
     private fun initRecycler() {
-        recipesListAdapter = RecipesListAdapter(recipes) { recipe ->
-            openRecipeByRecipeId(recipe.id)
-        }
-
-        binding.rvFavorites.apply {
-            adapter = recipesListAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
-
-    private fun loadFavoriteRecipes() {
         val favoriteRecipeIds = getFavorites()
-        val favoriteRecipeIdsAsStrings = favoriteRecipeIds.map { it }.toSet()
+        val favoriteRecipeIdsAsStrings = favoriteRecipeIds.map { it.toInt() }.toSet()
         val favoriteRecipes = STUB.getRecipesByIds(favoriteRecipeIdsAsStrings)
 
         recipesListAdapter = RecipesListAdapter(
@@ -98,11 +87,13 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             }
         }
 
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.mainContainer, recipeFragment)
-            .addToBackStack(null)
-            .commit()
+        parentFragmentManager.commit {
+            replace(R.id.mainContainer, RecipeFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(Constants.ARG_RECIPE_ID, recipeId)
+                }
+            })
+        }
     }
 
     override fun onDestroyView() {

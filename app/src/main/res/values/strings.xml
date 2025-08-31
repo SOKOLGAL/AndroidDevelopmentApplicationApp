@@ -19,5 +19,6 @@
     <string name="recipe_image_default_dish">Изображение блюда по умолчанию</string>
     <string name="recipe_foto_dish">Фотография блюда</string>
     <string name="cd_button_favorites">Кнопка избранное</string>
+    <string name="no_favorites">Вы еще не добавили ни одного рецепта в Избранное</string>
 
 </resources>

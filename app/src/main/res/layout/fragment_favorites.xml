@@ -45,27 +45,31 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/half_main_padding_8"
         android:layout_weight="1"
-        tools:LinearLayoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle" />
 
     <TextView
         android:id="@+id/tvEmptyFavorites"
         style="@style/NoFavoritesText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="332dp"
         android:layout_gravity="center"
         android:layout_margin="@dimen/main_padding_16"
         android:background="@drawable/share_rounded_screen_header"
         android:padding="@dimen/main_padding_indent_10"
+        android:text="@string/no_favorites"
         android:textAlignment="center"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle"
+        app:layout_constraintWidth_max="wrap"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="161dp"
-        tools:text="Вы еще не добавили ни одного рецепта в Избранное"
         tools:visibility="visible" />
 
 </LinearLayout>
