@@ -2,14 +2,17 @@ package com.example.androiddevelopmentapplicationapp
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentFavoritesBinding
 import androidx.core.view.isVisible
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
 
@@ -43,8 +46,8 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
         recipesListAdapter = RecipesListAdapter(
             recipes = favoriteRecipes,
-            onItemClick = { recipe ->
-                openRecipeByRecipeId(recipe.id)
+            onItemClick = { recipeId ->
+                openRecipeByRecipeId(recipeId)
             }
         )
 
@@ -57,13 +60,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     }
 
     private fun updateFavoritesView(favoriteRecipes: List<Recipe>) {
-        binding.ivFavoritesImage.setImageResource(
-            if (favoriteRecipes.isEmpty())
-                R.drawable.bcg_favorites
-            else
-                R.drawable.bcg_recipes_list
-        )
-
+        binding.ivFavoritesImage.setImageResource(R.drawable.bcg_favorites)
         binding.rvFavorites.isVisible = favoriteRecipes.isNotEmpty()
         binding.tvEmptyFavorites.isVisible = favoriteRecipes.isEmpty()
     }
@@ -81,18 +78,22 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     }
 
     private fun openRecipeByRecipeId(recipeId: Int) {
-        val recipeFragment = RecipeFragment().apply {
-            arguments = Bundle().apply {
-                putInt(Constants.ARG_RECIPE_ID, recipeId)
+        try {
+            val recipe = STUB.getRecipeById(recipeId)
+            val bundle = Bundle().apply {
+                putParcelable(Constants.ARG_RECIPE, recipe)
             }
-        }
-
-        parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(Constants.ARG_RECIPE_ID, recipeId)
-                }
-            })
+            parentFragmentManager.commit {
+                replace<RecipeFragment>(R.id.mainContainer, args = bundle)
+                addToBackStack(null)
+            }
+        } catch (e: Exception) {
+            Log.e("RecipesListFragment", "Error opening recipe", e)
+            Toast.makeText(
+                requireContext(),
+                "Не удалось открыть рецепт",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

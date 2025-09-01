@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/recipe_image_of_dish"
             android:scaleType="centerCrop"
-            android:src="@drawable/bcg_recipes_list"
+            android:src="@drawable/bcg_favorites"
             tools:src="@drawable/bcg_favorites" />
 
         <TextView
@@ -33,10 +33,7 @@
             android:padding="@dimen/main_padding_indent_10"
             android:text="@string/button_favorites"
             app:layout_constraintBottom_toBottomOf="@+id/ivFavoritesImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -45,17 +42,13 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/half_main_padding_8"
         android:layout_weight="1"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
         android:id="@+id/tvEmptyFavorites"
         style="@style/NoFavoritesText"
         android:layout_width="wrap_content"
-        android:layout_height="332dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/main_padding_16"
         android:background="@drawable/share_rounded_screen_header"
@@ -63,11 +56,6 @@
         android:text="@string/no_favorites"
         android:textAlignment="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvFavoritesTitle"
-        app:layout_constraintWidth_max="wrap"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="33dp"
         tools:visibility="visible" />
