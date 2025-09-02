@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemCategoryBinding
+import com.example.androiddevelopmentapplicationapp.model.Category
 import kotlin.with
 
 class CategoriesListAdapter(

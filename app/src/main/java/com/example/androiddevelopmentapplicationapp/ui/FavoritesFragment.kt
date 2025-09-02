@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -14,7 +14,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androiddevelopmentapplicationapp.Constants
 import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
+import com.example.androiddevelopmentapplicationapp.model.STUB
+import com.example.androiddevelopmentapplicationapp.model.Recipe
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null

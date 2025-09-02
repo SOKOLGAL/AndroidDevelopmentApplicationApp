@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,9 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
-import com.example.androiddevelopmentapplicationapp.STUB.getRecipesByCategoryId
+import com.example.androiddevelopmentapplicationapp.Constants
+import com.example.androiddevelopmentapplicationapp.model.STUB
+import com.example.androiddevelopmentapplicationapp.model.STUB.getRecipesByCategoryId
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     private var categoryId: Int? = null

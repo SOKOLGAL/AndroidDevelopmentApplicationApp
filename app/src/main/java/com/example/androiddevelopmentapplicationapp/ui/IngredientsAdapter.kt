@@ -1,11 +1,13 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.ItemIngredientBinding
+import com.example.androiddevelopmentapplicationapp.model.Ingredient
 import java.math.RoundingMode
 import java.math.BigDecimal
 
@@ -40,7 +42,7 @@ class IngredientsAdapter(
         ): IngredientViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(
-                    com.example.androidapplicationdevelopmentxml.R.layout.item_ingredient,
+                    R.layout.item_ingredient,
                     parent,
                     false
                 )

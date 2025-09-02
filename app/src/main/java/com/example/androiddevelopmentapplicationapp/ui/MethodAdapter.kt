@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

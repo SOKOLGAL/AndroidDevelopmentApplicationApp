@@ -1,11 +1,13 @@
-package com.example.androiddevelopmentapplicationapp
+package com.example.androiddevelopmentapplicationapp.ui
 
+import android.R
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationdevelopmentxml.databinding.ItemRecipeBinding
+import com.example.androiddevelopmentapplicationapp.model.Recipe
 
 class RecipesListAdapter(
     private val recipes: List<Recipe>,
@@ -23,7 +25,7 @@ class RecipesListAdapter(
                     }
                 } catch (e: Exception) {
                     Log.e("RecipesAdapter", "Error loading image: ${recipe.imageUrl}", e)
-                    ivRecipeImage.setImageResource(android.R.color.darker_gray)
+                    ivRecipeImage.setImageResource(R.color.darker_gray)
                 }
             }
         }
