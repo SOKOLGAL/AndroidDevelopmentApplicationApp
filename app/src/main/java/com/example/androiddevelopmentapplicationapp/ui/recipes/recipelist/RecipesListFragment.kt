@@ -1,21 +1,22 @@
-package com.example.androiddevelopmentapplicationapp.ui
+package com.example.androiddevelopmentapplicationapp.ui.recipes.recipelist
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipesListBinding
 import com.example.androiddevelopmentapplicationapp.Constants
 import com.example.androiddevelopmentapplicationapp.model.STUB
-import com.example.androiddevelopmentapplicationapp.model.STUB.getRecipesByCategoryId
+import com.example.androiddevelopmentapplicationapp.ui.RecipesListAdapter
+import com.example.androiddevelopmentapplicationapp.ui.recipes.recipe.RecipeFragment
 
 class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     private var categoryId: Int? = null
@@ -46,7 +47,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
 
         initRecycler()
         initHeader()
-        val recipes = getRecipesByCategoryId(categoryId)
+        val recipes = STUB.getRecipesByCategoryId(categoryId)
         val adapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }
@@ -87,7 +88,7 @@ class RecipesListFragment : Fragment(R.layout.fragment_recipes_list) {
     }
 
     private fun initRecycler() {
-        val recipes = getRecipesByCategoryId(categoryId)
+        val recipes = STUB.getRecipesByCategoryId(categoryId)
         recipesAdapter = RecipesListAdapter(recipes) { recipeId ->
             openRecipeByRecipeId(recipeId)
         }

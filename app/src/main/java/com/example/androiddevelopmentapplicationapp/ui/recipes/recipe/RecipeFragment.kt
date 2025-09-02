@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.ui
+package com.example.androiddevelopmentapplicationapp.ui.recipes.recipe
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentRecipeBinding
 import com.example.androiddevelopmentapplicationapp.Constants
-import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
 import com.example.androiddevelopmentapplicationapp.model.Recipe
+import com.example.androiddevelopmentapplicationapp.ui.IngredientsAdapter
+import com.example.androiddevelopmentapplicationapp.ui.MethodAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
@@ -74,7 +75,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
     private fun saveFavorites(favoriteRecipeIds: Set<String>) {
         val sharedPrefs = requireContext().getSharedPreferences(
-            PREFS_FAVORITES,
+            Constants.PREFS_FAVORITES,
             Context.MODE_PRIVATE
         )
         sharedPrefs.edit().apply {
@@ -85,7 +86,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
     private fun getFavorites(): MutableSet<String> {
         val sharedPrefs = requireContext().getSharedPreferences(
-            PREFS_FAVORITES,
+            Constants.PREFS_FAVORITES,
             Context.MODE_PRIVATE
         )
 

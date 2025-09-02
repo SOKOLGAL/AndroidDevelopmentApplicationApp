@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.ui
+package com.example.androiddevelopmentapplicationapp.ui.recipes.favorite
 
 import android.content.Context
 import android.os.Bundle
@@ -7,17 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.example.androidapplicationdevelopmentxml.R
-import com.example.androidapplicationdevelopmentxml.databinding.FragmentFavoritesBinding
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidapplicationdevelopmentxml.R
+import com.example.androidapplicationdevelopmentxml.databinding.FragmentFavoritesBinding
 import com.example.androiddevelopmentapplicationapp.Constants
-import com.example.androiddevelopmentapplicationapp.Constants.PREFS_FAVORITES
-import com.example.androiddevelopmentapplicationapp.model.STUB
 import com.example.androiddevelopmentapplicationapp.model.Recipe
+import com.example.androiddevelopmentapplicationapp.model.STUB
+import com.example.androiddevelopmentapplicationapp.ui.RecipesListAdapter
+import com.example.androiddevelopmentapplicationapp.ui.recipes.recipe.RecipeFragment
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private var _binding: FragmentFavoritesBinding? = null
@@ -70,7 +71,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private fun getFavorites(): MutableSet<String> {
         val sharedPrefs = requireContext().getSharedPreferences(
-            PREFS_FAVORITES,
+            Constants.PREFS_FAVORITES,
             Context.MODE_PRIVATE
         )
 

@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.ui
+package com.example.androiddevelopmentapplicationapp.ui.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ import com.example.androidapplicationdevelopmentxml.R
 import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCategoriesBinding
 import com.example.androiddevelopmentapplicationapp.Constants
 import com.example.androiddevelopmentapplicationapp.model.STUB
+import com.example.androiddevelopmentapplicationapp.ui.CategoriesListAdapter
+import com.example.androiddevelopmentapplicationapp.ui.recipes.recipelist.RecipesListFragment
 
 class CategoriesListFragment : Fragment() {
 
