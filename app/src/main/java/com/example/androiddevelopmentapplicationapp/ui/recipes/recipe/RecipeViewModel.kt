@@ -5,9 +5,7 @@ import com.example.androiddevelopmentapplicationapp.model.Category
 import com.example.androiddevelopmentapplicationapp.model.Ingredient
 import com.example.androiddevelopmentapplicationapp.model.Recipe
 
-class RecipeViewModel(
-    private val recipeRepository: RecipeRepository
-) : ViewModel() {
+class RecipeViewModel() : ViewModel() {
 
     data class RecipeDetailsState(
         val category: Category? = null,

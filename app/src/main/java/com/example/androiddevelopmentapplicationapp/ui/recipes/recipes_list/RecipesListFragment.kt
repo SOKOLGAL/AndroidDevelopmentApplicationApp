@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.ui.recipes.recipelist
+package com.example.androiddevelopmentapplicationapp.ui.recipes.recipes_list
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle

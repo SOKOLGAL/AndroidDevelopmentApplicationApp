@@ -14,7 +14,7 @@ import com.example.androidapplicationdevelopmentxml.databinding.FragmentListCate
 import com.example.androiddevelopmentapplicationapp.Constants
 import com.example.androiddevelopmentapplicationapp.model.STUB
 import com.example.androiddevelopmentapplicationapp.ui.CategoriesListAdapter
-import com.example.androiddevelopmentapplicationapp.ui.recipes.recipelist.RecipesListFragment
+import com.example.androiddevelopmentapplicationapp.ui.recipes.recipes_list.RecipesListFragment
 
 class CategoriesListFragment : Fragment() {
 

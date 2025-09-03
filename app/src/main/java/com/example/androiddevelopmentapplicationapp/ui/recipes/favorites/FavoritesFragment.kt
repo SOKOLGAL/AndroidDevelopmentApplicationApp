@@ -1,4 +1,4 @@
-package com.example.androiddevelopmentapplicationapp.ui.recipes.favorite
+package com.example.androiddevelopmentapplicationapp.ui.recipes.favorites
 
 import android.content.Context
 import android.os.Bundle
